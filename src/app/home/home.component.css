@@ -88,6 +88,10 @@
   .dashboard-widget > .progress {
       margin: 10px;
   }
+
+  .dashboard-widget-body {
+      padding-left: 15px;
+  }
   
   /*
    * Placeholder dashboard ideas
