@@ -12,11 +12,13 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
 import { ConfirmationComponent } from './auth/registration/confirmation/confirmation.component';
+import { PasswordRecoveryComponent } from './auth/password-recovery/password-recovery.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent },
   {path: 'register', component: RegistrationComponent},
   {path: 'register/confirmation', component: ConfirmationComponent},
+  {path: 'password-recovery', component: PasswordRecoveryComponent},
   {path: '', component: HomeComponent}
 ];
 
@@ -27,7 +29,8 @@ const appRoutes: Routes = [
     HomeComponent,
     LoginComponent,
     RegistrationComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    PasswordRecoveryComponent
   ],
   imports: [
     BrowserModule,

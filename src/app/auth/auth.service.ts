@@ -5,12 +5,21 @@ import { Http, Headers } from '@angular/http';
 
 @Injectable()
 export class AuthService {
-
-    constructor(private authRestService: AuthRestService, private http: Http) {}
+    private headers: Headers;
+    constructor(private authRestService: AuthRestService, private http: Http) {
+        this.headers = new Headers();
+        this.headers.append('Content-Type', 'application/json');
+    }
 
     createAccount(data) {
-        const headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:8080/register', data, { headers: headers });
+        return this.http.post('http://localhost:8080/register', data, { headers: this.headers });
+    }
+
+    sendPasswordChangeTokenRequest(username: string) {
+        return this.http.get('http://localhost:8080/password/retrieve/username/' + username, null);
+    }
+
+    sendNewPassword(data) {
+        return this.http.post('http://localhost:8080/password/retrieve/newpassword', data, { headers: this.headers });
     }
 }

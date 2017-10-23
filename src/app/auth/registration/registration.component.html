@@ -58,7 +58,7 @@
           <span class="help-block" *ngIf="!registrationForm.get('matchingPassword').valid && registrationForm.get('matchingPassword').touched">This field is required</span>
         </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-8 col-md-offset-4">
         <div class="alert alert-warning" *ngIf="errorMessage">
             {{ errorMessage }}
         </div>
