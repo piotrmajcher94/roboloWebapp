@@ -1,0 +1,66 @@
+<div class="row">
+  
+  <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-md-offset-3">
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+      <!-- Form Name -->
+      <legend>Register new account</legend>
+      
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="username">Username</label>  
+        <div class="col-md-4">
+        <input id="username" name="username" type="text" class="form-control" formControlName="username">
+        <span class="help-block">Username</span>  
+        </div>
+      </div>
+      
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="firstName">First name</label>  
+        <div class="col-md-4">
+        <input id="firstName" name="firstName" type="text" class="form-control" input-md formControlName="firstName">
+        <span class="help-block">First name</span>
+        </div>
+      </div>
+      
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="surname">Surname</label>  
+        <div class="col-md-4">
+        <input id="surname" name="surname" type="text"class="form-control input-md" formControlName="surname">
+        <span class="help-block">Surname</span>  
+        </div>
+      </div>
+      
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="email">Email address</label>  
+        <div class="col-md-4">
+        <input id="email" name="email" type="text" class="form-control input-md" formControlName="email">
+        <span class="help-block">Email address</span>  
+        </div>
+      </div>
+      
+      <!-- Password input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="passwordinput">Password</label>
+        <div class="col-md-4">
+          <input id="passwordinput" name="password" type="password" class="form-control input-md" formControlName="password">
+          <span class="help-block">Password</span>
+        </div>
+      </div>
+      
+      <!-- Password input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="passwordConfirmation">Confirm password</label>
+        <div class="col-md-4">
+          <input id="passwordConfirmation" name="passwordConfirmation" type="password" class="form-control input-md" formControlName="passwordConfirmation">
+          <span class="help-block">Confirm password</span>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <button type="submit" class="btn btn-default pull-right">Create account</button>
+      </div>
+      </form>
+  </div>
+</div>
