@@ -1,5 +1,8 @@
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-registration',
@@ -9,22 +12,33 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class RegistrationComponent implements OnInit {
 
   registrationForm: FormGroup;
+  errorMessage;
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.registrationForm = new FormGroup({
       'username': new FormControl(null, Validators.required),
-      'firstName': new FormControl(null, Validators.required),
+      'name': new FormControl(null, Validators.required),
       'surname': new FormControl(null, Validators.required),
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'password': new FormControl(null, Validators.required),
-      'passwordConfirmation': new FormControl(null, Validators.required)
+      'matchingPassword': new FormControl(null, Validators.required)
     });
   }
 
   onSubmit() {
-    console.log(this.registrationForm.value);
+    console.log(this.registrationForm);
+    this.authService.createAccount(this.registrationForm.value).subscribe(
+      (data) => {
+        console.log(data);
+        this.router.navigate(['/register', 'confirmation']);
+      },
+      (error) => {
+        console.log(error);
+        this.errorMessage = error.text();
+      }
+    );
   }
 
 }

@@ -4,19 +4,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
+import { ConfirmationComponent } from './auth/registration/confirmation/confirmation.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent },
   {path: 'register', component: RegistrationComponent},
+  {path: 'register/confirmation', component: ConfirmationComponent},
   {path: '', component: HomeComponent}
 ];
-
 
 @NgModule({
   declarations: [
@@ -24,13 +26,15 @@ const appRoutes: Routes = [
     NavComponent,
     HomeComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
   providers: [AuthRestService, AuthService],
   bootstrap: [AppComponent]
