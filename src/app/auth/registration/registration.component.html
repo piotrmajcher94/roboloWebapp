@@ -1,14 +1,14 @@
 <div class="row">
 
-  <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 col-md-offset-3">
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-md-offset-3">
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="form-horizontal">
       <!-- Form Name -->
-      <legend>Register new account</legend>
+      <legend>Create new account</legend>
 
       <!-- Text input-->
       <div class="form-group">
         <label class="col-md-4 control-label" for="username">Username</label>
-        <div class="col-md-4">
+        <div class="col-md-8">
           <input id="username" name="username" type="text" class="form-control" formControlName="username">
           <span class="help-block" *ngIf="!registrationForm.get('username').valid && registrationForm.get('username').touched">This field is required</span>
         </div>
@@ -17,7 +17,7 @@
       <!-- Text input-->
       <div class="form-group">
         <label class="col-md-4 control-label" for="name">First name</label>
-        <div class="col-md-4">
+        <div class="col-md-8">
           <input id="name" name="name" type="text" class="form-control" input-md formControlName="name">
           <span class="help-block" *ngIf="!registrationForm.get('name').valid && registrationForm.get('name').touched">This field is required</span>
         </div>
@@ -26,7 +26,7 @@
       <!-- Text input-->
       <div class="form-group">
         <label class="col-md-4 control-label" for="surname">Surname</label>
-        <div class="col-md-4">
+        <div class="col-md-8">
           <input id="surname" name="surname" type="text" class="form-control input-md" formControlName="surname">
           <span class="help-block" *ngIf="!registrationForm.get('surname').valid && registrationForm.get('surname').touched">This field is required</span>
         </div>
@@ -35,7 +35,7 @@
       <!-- Text input-->
       <div class="form-group">
         <label class="col-md-4 control-label" for="email">Email address</label>
-        <div class="col-md-4">
+        <div class="col-md-8">
           <input id="email" name="email" type="text" class="form-control input-md" formControlName="email">
           <span class="help-block" *ngIf="!registrationForm.get('email').valid && registrationForm.get('email').touched">This field is required</span>
         </div>
@@ -44,7 +44,7 @@
       <!-- Password input-->
       <div class="form-group">
         <label class="col-md-4 control-label" for="passwordinput">Password</label>
-        <div class="col-md-4">
+        <div class="col-md-8">
           <input id="passwordinput" name="password" type="password" class="form-control input-md" formControlName="password">
           <span class="help-block" *ngIf="!registrationForm.get('password').valid && registrationForm.get('password').touched">This field is required</span>
         </div>
@@ -53,7 +53,7 @@
       <!-- Password input-->
       <div class="form-group">
         <label class="col-md-4 control-label" for="passwordConfirmation">Confirm password</label>
-        <div class="col-md-4">
+        <div class="col-md-8">
           <input id="passwordConfirmation" name="passwordConfirmation" type="password" class="form-control input-md" formControlName="matchingPassword">
           <span class="help-block" *ngIf="!registrationForm.get('matchingPassword').valid && registrationForm.get('matchingPassword').touched">This field is required</span>
         </div>
