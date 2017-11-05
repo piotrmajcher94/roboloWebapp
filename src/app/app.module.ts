@@ -1,5 +1,5 @@
-import { AuthService } from './auth/auth.service';
-import { AuthRestService } from './shared/auth-rest.service';
+import { UserSessionService } from './auth/services/user.session.service';
+import { AuthRestService } from './auth/rest/auth.rest.service';
 import { ProjectService } from './services/project.service';
 import { ProjectRest } from './rest/project.rest';
 
@@ -51,7 +51,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [AuthRestService, AuthService, ProjectService, ProjectRest],
+  providers: [AuthRestService, ProjectService, ProjectRest, UserSessionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
