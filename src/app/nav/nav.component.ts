@@ -6,19 +6,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent implements OnInit {
+export class NavComponent {
 
+  public isCollapsed = true;
   constructor(private router: Router) { }
-
-  ngOnInit() {
-  }
-
-  onRegister() {
-    this.router.navigate(['/register']);
-  }
-
-  onSignIn() {
-    this.router.navigate(['/login']);
-  }
-
 }
