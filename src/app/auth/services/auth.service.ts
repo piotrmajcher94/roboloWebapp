@@ -9,13 +9,12 @@ export const TOKEN_NAME: string = 'jwt_token';
 export const LOGIN_SUCCESS: string = 'login_success';
 export const LOGIN_FAILED: string = 'login_failed';
 const AUTH_HEADER_KEY = 'Authorization';
+const AUTH_PREFIX = 'Bearer';
 
 @Injectable()
 export class AuthService {
 
     private headers = new Headers({'Content-Type':'application/json'});
-    private isLoggedIn: boolean;
-    
 
     constructor(private authRestService: AuthRestService) {}
 
@@ -25,7 +24,11 @@ export class AuthService {
 
     setToken(token: string): void {
         localStorage.setItem(TOKEN_NAME, token);
-    }  
+    }
+    
+    clearToken() {
+        localStorage.clear();
+    }
 
     getTokenExpirationDate(token: string): Date {
         const decoded = jwt_decode(token);
@@ -46,11 +49,12 @@ export class AuthService {
         return !(date.valueOf() > new Date().valueOf());
     }
 
-    login(user): Observable<string> {
-        return this.authRestService.login(JSON.stringify(user), this.headers)
+    login(usernameAndPassword): Observable<string> {
+        return this.authRestService.login(JSON.stringify(usernameAndPassword), this.headers)
                 .map(
                     (res) => {
                         let token = res.headers.get(AUTH_HEADER_KEY);
+                        console.log("Received token: " + token);
                         if (token !== undefined) {
                             this.setToken(token);
                             return LOGIN_SUCCESS;
@@ -62,5 +66,26 @@ export class AuthService {
                 );
     }
 
+    getSessionAuthHeaders(): Headers {
+        if (this.headers.get(AUTH_HEADER_KEY) === null) {
+            const token = localStorage.getItem(TOKEN_NAME);
+            if(token) {
+              this.headers.append(AUTH_HEADER_KEY, `${AUTH_PREFIX} ${token}`);
+            }
+        }
+        return this.headers;
+    }
+
+    createAccount(registrationData) {
+        return this.authRestService.createAccount(registrationData);
+    }
+
+    sendPasswordChangeTokenRequest(username: string) {
+        return this.authRestService.sendPasswordChangeTokenRequest(username);
+    }
+
+    sendNewPassword(newPasswordData) {
+        return this.authRestService.sendNewPassword(newPasswordData);
+    }
 
 }

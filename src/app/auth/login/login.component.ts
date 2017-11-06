@@ -14,6 +14,13 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+
+    // Clear token if redirected to login page after login
+    // You need to login again
+    if (!this.authService.isTokenExpired()) {
+      this.authService.clearToken();
+    }
+    
     this.loginForm = new FormGroup({
       'username': new FormControl(null, Validators.required),
       'password': new FormControl(null, Validators.required)

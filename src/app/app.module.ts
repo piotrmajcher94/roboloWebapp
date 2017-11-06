@@ -3,7 +3,6 @@ import { AuthGuard } from './auth/auth.guard';
 import { AuthRestService } from './auth/rest/auth.rest.service';
 import { ProjectService } from './services/project.service';
 import { ProjectRest } from './rest/project.rest';
-import { AuthRequestOptions } from './auth/auth-request';
 import { AuthErrorHandler } from './auth/auto-error.handler';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -65,10 +64,6 @@ const appRoutes: Routes = [
     ProjectRest, 
     AuthService, 
     AuthGuard,
-    {
-      provide: RequestOptions, 
-      useClass: AuthRequestOptions
-    },
     AuthErrorHandler],
   bootstrap: [AppComponent]
 })

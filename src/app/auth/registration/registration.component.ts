@@ -1,4 +1,4 @@
-import { AuthRestService } from '../rest/auth.rest.service';
+import { AuthService } from '../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
   errorMessage;
 
-  constructor(private authRestService: AuthRestService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.registrationForm = new FormGroup({
@@ -29,15 +29,15 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit() {
     console.log(this.registrationForm);
-    // this.authRestService.createAccount(this.registrationForm.value).subscribe(
-    //   (data) => {
-    //     console.log(data);
-    //     this.router.navigate(['/register', 'confirmation']);
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //     this.errorMessage = error.text();
-    //   }
+    this.authService.createAccount(this.registrationForm.value).subscribe(
+      (data) => {
+        console.log(data);
+        this.router.navigate(['/register', 'confirmation']);
+      },
+      (error) => {
+        console.log(error);
+        this.errorMessage = error.text();
+      }
     );
   }
 
