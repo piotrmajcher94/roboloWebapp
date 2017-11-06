@@ -1,13 +1,16 @@
-import { UserSessionService } from './auth/services/user.session.service';
+import { AuthService } from './auth/services/auth.service';
+import { AuthGuard } from './auth/auth.guard';
 import { AuthRestService } from './auth/rest/auth.rest.service';
 import { ProjectService } from './services/project.service';
 import { ProjectRest } from './rest/project.rest';
+import { AuthRequestOptions } from './auth/auth-request';
+import { AuthErrorHandler } from './auth/auto-error.handler';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, RequestOptions } from '@angular/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -26,7 +29,7 @@ const appRoutes: Routes = [
   {path: 'register', component: RegistrationComponent},
   {path: 'register/confirmation', component: ConfirmationComponent},
   {path: 'password-recovery', component: PasswordRecoveryComponent},
-  {path: 'projects', component: ProjectsComponent},
+  {path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard]},
   {path: '', component: HomeComponent}
 ];
 
@@ -51,7 +54,17 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [AuthRestService, ProjectService, ProjectRest, UserSessionService],
+  providers: [
+    AuthRestService, 
+    ProjectService, 
+    ProjectRest, 
+    AuthService, 
+    AuthGuard,
+    {
+      provide: RequestOptions, 
+      useClass: AuthRequestOptions
+    },
+    AuthErrorHandler],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

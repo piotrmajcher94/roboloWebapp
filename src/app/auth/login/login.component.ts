@@ -1,6 +1,6 @@
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { AuthRestService } from '../rest/auth.rest.service';
+import { AuthService, LOGIN_SUCCESS, LOGIN_FAILED } from '../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  constructor(private authRestService: AuthRestService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -21,13 +21,15 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authRestService.login(this.loginForm.value).subscribe(
+    this.authService.login(this.loginForm.value).subscribe(
       (res) => {
-        localStorage.setItem('Authorization', res.headers.get('Authorization'));
-        this.router.navigate(["/projects"]);
+        if (res === LOGIN_SUCCESS) {
+          this.router.navigate(["/projects"]);
+        } else {
+          console.log(LOGIN_FAILED);
+        }
       },
       (err) => {
-        //TODO Login failed
         console.log(err);
       }
     );

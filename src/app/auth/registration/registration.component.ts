@@ -29,15 +29,15 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit() {
     console.log(this.registrationForm);
-    this.authRestService.createAccount(this.registrationForm.value).subscribe(
-      (data) => {
-        console.log(data);
-        this.router.navigate(['/register', 'confirmation']);
-      },
-      (error) => {
-        console.log(error);
-        this.errorMessage = error.text();
-      }
+    // this.authRestService.createAccount(this.registrationForm.value).subscribe(
+    //   (data) => {
+    //     console.log(data);
+    //     this.router.navigate(['/register', 'confirmation']);
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //     this.errorMessage = error.text();
+    //   }
     );
   }
 
