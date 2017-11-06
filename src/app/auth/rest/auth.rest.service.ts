@@ -7,19 +7,19 @@ export class AuthRestService {
     
     constructor(private http: Http) {}
 
-    createAccount(data, headers: Headers) {
-        return this.http.post('http://localhost:8080/register', data, { headers: headers });
+    createAccount(registrationData) {
+        return this.http.post('http://localhost:8080/register', registrationData, { headers: new Headers({'Content-Type':'application/json'}) });
     }
 
-    sendPasswordChangeTokenRequest(username: string, headers: Headers) {
-        return this.http.get('http://localhost:8080/password/retrieve/username/' + username, { headers: headers });
+    sendPasswordChangeTokenRequest(username: string) {
+        return this.http.get('http://localhost:8080/password/retrieve/username/' + username, { headers:  new Headers({'Content-Type':'application/json'}) });
     }
 
-    sendNewPassword(data, headers: Headers) {
-        return this.http.post('http://localhost:8080/password/retrieve/newpassword', data, { headers: headers });
+    sendNewPassword(newPasswordData) {
+        return this.http.post('http://localhost:8080/password/retrieve/newpassword', newPasswordData, { headers:  new Headers({'Content-Type':'application/json'})});
     }
 
-    login(data, headers: Headers) {
-        return this.http.post('http://localhost:8080/login', data, {headers: headers});
+    login(loginData, headers: Headers) {
+        return this.http.post('http://localhost:8080/login', loginData, {headers: headers});
     }
 }

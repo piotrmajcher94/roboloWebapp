@@ -33,6 +33,9 @@
             <!-- <li><a routerLink="#">Settings</a></li> -->
             <!-- <li><a href="#">About</a></li> -->
           </ul>
+          <ul *ngIf="isUserLoggedIn()" class="nav navbar-nav navbar-right">
+            <li><a routerLink="/login">Logout</a></li>
+          </ul>
         </div>
     </div>
   </nav>

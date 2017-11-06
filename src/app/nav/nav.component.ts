@@ -1,5 +1,7 @@
 import { Router } from '@angular/router';
+import { AuthService } from "../auth/services/auth.service";
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-nav',
@@ -9,5 +11,9 @@ import { Component, OnInit } from '@angular/core';
 export class NavComponent {
 
   public isCollapsed = true;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
+
+  isUserLoggedIn() {
+    return !this.authService.isTokenExpired();
+  }
 }

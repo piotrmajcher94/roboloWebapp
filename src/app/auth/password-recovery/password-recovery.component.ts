@@ -1,4 +1,4 @@
-import { AuthRestService } from '../rest/auth.rest.service';
+import { AuthService } from '../services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -14,7 +14,7 @@ export class PasswordRecoveryComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
 
-  constructor(private authRestService: AuthRestService) {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class PasswordRecoveryComponent implements OnInit {
   }
 
   onSubmitEmail() {
-    this.authRestService.sendPasswordChangeTokenRequest(this.usernameForm.get('username').value).subscribe(
+    this.authService.sendPasswordChangeTokenRequest(this.usernameForm.get('username').value).subscribe(
       (data) => {
         this.successMessage = data.text();
         this.errorMessage = null;
@@ -44,7 +44,7 @@ export class PasswordRecoveryComponent implements OnInit {
   }
 
   onSubmitPasswords() {
-    this.authRestService.sendNewPassword(this.newPasswordForm.value).subscribe(
+    this.authService.sendNewPassword(this.newPasswordForm.value).subscribe(
       (data) => {
         console.log(data);
         this.successMessage = data.text();
