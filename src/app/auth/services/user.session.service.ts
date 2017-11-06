@@ -5,23 +5,20 @@ import {Headers } from '@angular/http';
 export class UserSessionService {
 
     private headers: Headers;
+    private isLoggedIn: boolean;
 
     constructor() {
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');
-
-        // HARDCODED FOR NOW!!!!!!!!!!!!!!!!!!!!
-        let username: string = 'username';
-        let password: string = 'password';
-        ////////////////////////////////////////
-        /*
-        TODO here we should have authorization and session token saved here after login, when the token-based authorization
-        is made on the backend
-        */
-        this.headers.append("Authorization", "Basic " + btoa(username + ":" + password));
+        
     }
 
     getSessionAuthHeaders() :Headers {
+        let token = localStorage.getItem("Authorization");
+        if (token !== undefined) {
+            console.log("Found token! " + token);
+            this.headers.append("Authorization", token);
+        }
         return this.headers;
     }
 }

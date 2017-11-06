@@ -22,4 +22,8 @@ export class AuthRestService {
     sendNewPassword(data) {
         return this.http.post('http://localhost:8080/password/retrieve/newpassword', data, { headers: this.headers });
     }
+
+    login(data) {
+        return this.http.post('http://localhost:8080/login', data, {headers: this.headers});
+    }
 }
