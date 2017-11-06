@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<!-- <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Robolify</a>
@@ -8,4 +8,31 @@
             <button type="button" class="btn btn-default navbar-btn pull-right" (click)="onRegister()">Register</button>
         </div>
     </div>
-</nav>
+</nav> -->
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+  
+      <!-- Logo -->
+      <div class="navbar-header">
+        <a href="#" class="navbar-brand">Robolify</a>
+  
+        <!-- Hamburger button -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" (click) = "isCollapsed = !isCollapsed">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+  
+      <!-- Menu items -->
+        <div class="collapse navbar-collapse" [ngbCollapse] = "isCollapsed">
+          <ul class="nav navbar-nav">
+            <li><a routerLink="/projects">My Projects</a></li>
+            <li><a routerLink="/workers">My Workers</a></li>
+            <!-- <li><a routerLink="#">Settings</a></li> -->
+            <!-- <li><a href="#">About</a></li> -->
+          </ul>
+        </div>
+    </div>
+  </nav>

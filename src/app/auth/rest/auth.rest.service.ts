@@ -1,12 +1,12 @@
-import { AuthRestService } from './../shared/auth-rest.service';
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
 
 @Injectable()
-export class AuthService {
+export class AuthRestService {
     private headers: Headers;
-    constructor(private authRestService: AuthRestService, private http: Http) {
+    
+    constructor(private http: Http) {
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');
     }
