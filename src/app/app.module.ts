@@ -16,13 +16,17 @@ import { PasswordRecoveryComponent } from './auth/password-recovery/password-rec
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
 import { ProjectsListItemComponent } from './projects/projects-list/projects-list-item/projects-list-item.component';
+import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent },
   {path: 'register', component: RegistrationComponent},
   {path: 'register/confirmation', component: ConfirmationComponent},
   {path: 'password-recovery', component: PasswordRecoveryComponent},
-  {path: 'projects', component: ProjectsComponent},
+  {path: 'projects', component: ProjectsComponent, children: [
+    {path: ':id/details', component: ProjectDetailsComponent},
+    {path: '', component: ProjectsListComponent}
+  ]},
   {path: '', component: HomeComponent}
 ];
 
@@ -37,7 +41,8 @@ const appRoutes: Routes = [
     PasswordRecoveryComponent,
     ProjectsComponent,
     ProjectsListComponent,
-    ProjectsListItemComponent
+    ProjectsListItemComponent,
+    ProjectDetailsComponent
   ],
   imports: [
     BrowserModule,
