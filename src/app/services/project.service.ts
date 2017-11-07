@@ -13,9 +13,9 @@ export class ProjectService {
         private authService: AuthService) {
     }
 
-    getAllProjectStubs() : Observable<ProjectStubTO[]>{
-        let headers = this.authService.getSessionAuthHeaders();
+    getAllProjectStubs(): Observable<ProjectStubTO[]> {
+        const headers = this.authService.getSessionAuthHeaders();
         return this.projectRest.getAllProjectStubs(this.authService.getSessionAuthHeaders())
-            .map((res :Response) => <ProjectStubTO[]> JSON.parse(res.text()));
+            .map((res: Response) => <ProjectStubTO[]> JSON.parse(res.text()));
     }
 }
