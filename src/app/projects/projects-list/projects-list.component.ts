@@ -8,22 +8,17 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: './projects-list.component.html',
   styleUrls: ['./projects-list.component.css']
 })
-export class ProjectsListComponent implements OnInit, OnDestroy {
+export class ProjectsListComponent implements OnInit {
 
   projects: ProjectStubTO[];
-  subscription: Subscription;
 
   constructor(private projectService: ProjectService) { }
 
   ngOnInit() {
-    this.subscription = this.projectService.getAllProjectStubs().subscribe(
+    this.projectService.getAllProjectStubs().subscribe(
       (data: ProjectStubTO[]) => this.projects = data,
       (error) => console.log(error)
     );
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
 }
