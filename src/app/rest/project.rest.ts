@@ -6,14 +6,14 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ProjectRest {
-    
+
     constructor(
         private http: Http) {
     }
 
     getAllProjectStubs(headers: Headers) {
         return this.http.get(
-            'http://localhost:8080/projects/stubs/all', 
+            'http://localhost:8080/projects/stubs/all',
             {headers: headers}
         );
     }
