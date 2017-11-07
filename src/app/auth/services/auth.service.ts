@@ -24,10 +24,12 @@ export class AuthService {
 
     setToken(token: string): void {
         localStorage.setItem(TOKEN_NAME, token);
+        this.headers.append(AUTH_HEADER_KEY, `${AUTH_PREFIX} ${token}`);
     }
     
     clearToken() {
-        localStorage.clear();
+        this.headers = new Headers({'Content-Type':'application/json'});
+        localStorage.removeItem(TOKEN_NAME);
     }
 
     getTokenExpirationDate(token: string): Date {
@@ -67,12 +69,6 @@ export class AuthService {
     }
 
     getSessionAuthHeaders(): Headers {
-        if (this.headers.get(AUTH_HEADER_KEY) === null) {
-            const token = localStorage.getItem(TOKEN_NAME);
-            if(token) {
-              this.headers.append(AUTH_HEADER_KEY, `${AUTH_PREFIX} ${token}`);
-            }
-        }
         return this.headers;
     }
 
