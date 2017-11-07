@@ -1,3 +1,4 @@
+import { ProjectTo } from './../tos/project.to';
 import { ProjectRest } from '../rest/project.rest';
 import { AuthService } from '../auth/services/auth.service';
 import { Injectable } from '@angular/core';
@@ -17,5 +18,10 @@ export class ProjectService {
         const headers = this.authService.getSessionAuthHeaders();
         return this.projectRest.getAllProjectStubs(this.authService.getSessionAuthHeaders())
             .map((res: Response) => <ProjectStubTO[]> JSON.parse(res.text()));
+    }
+
+    getProjectDetails(projectId: number): Observable<ProjectTo> {
+        return this.projectRest.getProjectDetails(projectId, this.authService.getSessionAuthHeaders())
+        .map((res: Response) => <ProjectTo>res.json());
     }
 }

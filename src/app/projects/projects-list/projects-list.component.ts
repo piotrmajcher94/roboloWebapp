@@ -20,5 +20,5 @@ export class ProjectsListComponent implements OnInit {
       (error) => console.log(error)
     );
   }
-
+  
 }

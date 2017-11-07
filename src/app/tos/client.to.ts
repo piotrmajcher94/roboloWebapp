@@ -1,7 +1,7 @@
 export class ClientTO {
 
-    id : number; 
-    name : string;  
-    telephoneNumbers : string[];
-    emailAddress : string;
+    id: number;
+    name: string;
+    telephoneNumbers: string[];
+    emailAddress: string;
 }
