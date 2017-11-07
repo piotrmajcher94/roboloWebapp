@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ProjectStubTO } from './../../../tos/project.stub.to';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -9,9 +10,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProjectsListItemComponent implements OnInit {
 
   @Input() project: ProjectStubTO;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  onShowDetails() {
+    this.router.navigate(['/projects', this.project.id, 'details']);
+  }
 }

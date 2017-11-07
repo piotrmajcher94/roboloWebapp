@@ -1,8 +1,8 @@
-export class ClientTO {
+export class WorkerTO {
 
     id: number;
     name: string;
     surname: string;
     telephoneNumbers: string[];
-    emailAddress: string;
+
 }
