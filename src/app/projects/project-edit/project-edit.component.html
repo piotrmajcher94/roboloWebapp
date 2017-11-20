@@ -1,0 +1,90 @@
+<div class="row">
+  <h2>New project</h2>
+
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-md-offset-3">
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+      <!-- Form Name -->
+      <legend>Create new project</legend>
+
+      <!-- Text input-->
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="projectName">Client</label>
+        <div class="col-md-8">
+          
+          <select name="client" id="client" class="form-control">
+            <option value="client1">Client 1</option>
+            <option value="client1">Client 2</option>
+            <option value="client1">Client 3</option>
+            <option value="client1">Client 4</option>
+          </select>
+          
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="projectName">Name</label>
+        <div class="col-md-8">
+          <input id="projectName" name="projectName" type="text" class="form-control" formControlName="projectName">
+          <span class="help-block" *ngIf="!projectForm.get('projectName').valid && projectForm.get('projectName').touched">This field is required</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="startDate">Start date</label>
+        <div class="col-md-8">
+          <input id="startDate" name="startDate" type="text" class="form-control" formControlName="startDate">
+          <span class="help-block" *ngIf="!projectForm.get('startDate').valid && projectForm.get('startDate').touched">This field is required</span>
+        </div>
+      </div>
+
+      <div formArrayName="addressTO">
+        <h4 style="margin: 0px">Address</h4>
+        <hr style="margin-top: 0px;">
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="street">Street</label>
+          <div class="col-md-8">
+            <input id="street" name="street" type="text" class="form-control" formControlName="street">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="houseNumber">House number</label>
+          <div class="col-md-8">
+            <input id="houseNumber" name="houseNumber" type="text" class="form-control" formControlName="houseNumber">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="apartmentNumber">Apartment number</label>
+          <div class="col-md-8">
+            <input id="apartmentNumber" name="apartmentNumber" type="text" class="form-control" formControlName="apartmentNumber">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="city">City</label>
+          <div class="col-md-8">
+            <input id="city" name="city" type="text" class="form-control" formControlName="city">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="postCode">Post code</label>
+          <div class="col-md-8">
+            <input id="postCode" name="postCode" type="text" class="form-control" formControlName="postCode">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="country">Country</label>
+          <div class="col-md-8">
+            <input id="country" name="country" type="text" class="form-control" formControlName="country">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8 col-md-offset-4">
+        <div class="alert alert-warning" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+        <button type="submit" class="btn btn-success pull-right" [disabled]="!projectForm.valid">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
