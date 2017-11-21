@@ -1,6 +1,6 @@
-import { FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormGroup, Validators, FormArray, FormControl} from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms/src/model';
+
 
 @Component({
   selector: 'app-worker-edit',
