@@ -69,6 +69,9 @@ export class AuthService {
     }
 
     getSessionAuthHeaders(): Headers {
+        if (this.headers.get(AUTH_HEADER_KEY) == null) {
+            this.setToken(this.getToken());
+        }
         return this.headers;
     }
 
