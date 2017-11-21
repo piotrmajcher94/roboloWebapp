@@ -7,21 +7,6 @@
       <legend>Create new project</legend>
 
       <!-- Text input-->
-
-      <div class="form-group">
-        <label class="col-md-4 control-label" for="projectName">Client</label>
-        <div class="col-md-8">
-          
-          <select name="client" id="client" class="form-control">
-            <option value="client1">Client 1</option>
-            <option value="client1">Client 2</option>
-            <option value="client1">Client 3</option>
-            <option value="client1">Client 4</option>
-          </select>
-          
-        </div>
-      </div>
-
       <div class="form-group">
         <label class="col-md-4 control-label" for="projectName">Name</label>
         <div class="col-md-8">
@@ -34,11 +19,11 @@
         <label class="col-md-4 control-label" for="startDate">Start date</label>
         <div class="col-md-8">
           <input id="startDate" name="startDate" type="text" class="form-control" formControlName="startDate">
-          <span class="help-block" *ngIf="!projectForm.get('startDate').valid && projectForm.get('startDate').touched">This field is required</span>
+          <span class="help-block" *ngIf="!projectForm.get('startDate').valid && projectForm.get('startDate').touched">Date format: YYYY-MM-DD</span>
         </div>
       </div>
 
-      <div formArrayName="addressTO">
+      <div formGroupName="addressTO">
         <h4 style="margin: 0px">Address</h4>
         <hr style="margin-top: 0px;">
         <div class="form-group">
