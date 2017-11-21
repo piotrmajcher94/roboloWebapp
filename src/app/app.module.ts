@@ -12,7 +12,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, RequestOptions } from '@angular/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { CookieLawModule } from 'angular2-cookie-law';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -25,6 +24,11 @@ import { ProjectsComponent } from './projects/projects.component';
 import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
 import { ProjectsListItemComponent } from './projects/projects-list/projects-list-item/projects-list-item.component';
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
+import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
+import { WorkersComponent } from './workers/workers.component';
+import { WorkersListItemComponent } from './workers/workers-list/workers-list-item/workers-list-item.component';
+import { WorkerEditComponent } from './workers/worker-edit/worker-edit.component';
+import { WorkersListComponent } from './workers/workers-list/workers-list.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent },
@@ -32,8 +36,15 @@ const appRoutes: Routes = [
   {path: 'register/confirmation', component: ConfirmationComponent},
   {path: 'password-recovery', component: PasswordRecoveryComponent},
   {path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard], children: [
+    {path: '', redirectTo: 'all', pathMatch: 'full'},
+    {path: 'edit', component: ProjectEditComponent},
     {path: ':id/details', component: ProjectDetailsComponent},
-    {path: '', component: ProjectsListComponent}
+    {path: 'all', component: ProjectsListComponent}
+  ]},
+  {path: 'workers', component: WorkersComponent, canActivate: [AuthGuard], children: [
+    {path: '', redirectTo: 'all', pathMatch: 'full'},
+    {path: 'all', component: WorkersListComponent},
+    {path: 'edit', component: WorkerEditComponent}
   ]},
   {path: '', component: HomeComponent}
 ];
@@ -50,7 +61,12 @@ const appRoutes: Routes = [
     ProjectsComponent,
     ProjectsListComponent,
     ProjectsListItemComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    ProjectEditComponent,
+    WorkersComponent,
+    WorkersListComponent,
+    WorkersListItemComponent,
+    WorkerEditComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +75,6 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    BrowserAnimationsModule,
     CookieLawModule
   ],
   providers: [
