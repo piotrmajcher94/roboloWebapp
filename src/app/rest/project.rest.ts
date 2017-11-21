@@ -22,4 +22,8 @@ export class ProjectRest {
     getProjectDetails(projectId: number, headers: Headers) {
         return this.http.get(this.restUrl + 'projects/' + projectId, {headers: headers});
     }
+
+    createProject(data, headers) {
+        return this.http.post(this.restUrl + 'projects/add', data, {headers: headers});
+    }
 }
