@@ -25,6 +25,10 @@ import { ProjectsListComponent } from './projects/projects-list/projects-list.co
 import { ProjectsListItemComponent } from './projects/projects-list/projects-list-item/projects-list-item.component';
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
 import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
+import { WorkersComponent } from './workers/workers.component';
+import { WorkersListItemComponent } from './workers/workers-list/workers-list-item/workers-list-item.component';
+import { WorkerEditComponent } from './workers/worker-edit/worker-edit.component';
+import { WorkersListComponent } from './workers/workers-list/workers-list.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent },
@@ -36,6 +40,11 @@ const appRoutes: Routes = [
     {path: 'edit', component: ProjectEditComponent},
     {path: ':id/details', component: ProjectDetailsComponent},
     {path: 'all', component: ProjectsListComponent}
+  ]},
+  {path: 'workers', component: WorkersComponent, canActivate: [AuthGuard], children: [
+    {path: '', redirectTo: 'all', pathMatch: 'full'},
+    {path: 'all', component: WorkersListComponent},
+    {path: 'edit', component: WorkerEditComponent}
   ]},
   {path: '', component: HomeComponent}
 ];
@@ -53,7 +62,11 @@ const appRoutes: Routes = [
     ProjectsListComponent,
     ProjectsListItemComponent,
     ProjectDetailsComponent,
-    ProjectEditComponent
+    ProjectEditComponent,
+    WorkersComponent,
+    WorkersListComponent,
+    WorkersListItemComponent,
+    WorkerEditComponent
   ],
   imports: [
     BrowserModule,
