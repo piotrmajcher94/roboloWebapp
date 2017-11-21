@@ -1,3 +1,4 @@
+import { Response } from '@angular/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { AuthService, LOGIN_SUCCESS, LOGIN_FAILED } from '../services/auth.service';
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  errorMessage;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -36,7 +38,8 @@ export class LoginComponent implements OnInit {
           console.log(LOGIN_FAILED);
         }
       },
-      (err) => {
+      (err: Response) => {
+        this.errorMessage = err.json().message;
         console.log(err);
       }
     );
