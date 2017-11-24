@@ -1,10 +1,10 @@
-import { ProjectService } from './../../services/project.service';
+import { ProjectService } from './../services/project.service';
 import { ProjectStubTO } from './../../tos/project.stub.to';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import {VERSION, MatDialog, MatDialogRef} from '@angular/material';
-import { EditProjectComponent } from './edit-project.component';
+import { ProjectEditComponent } from './../project-edit/project-edit.component'
 
 @Component({
   selector: 'app-projects-list',
@@ -14,7 +14,7 @@ import { EditProjectComponent } from './edit-project.component';
 export class ProjectsListComponent implements OnInit {
 
   projects: ProjectStubTO[];
-  editModalRef: MatDialogRef<EditProjectComponent>;
+  editModalRef: MatDialogRef<ProjectEditComponent>;
 
   constructor(
     private projectService: ProjectService,
@@ -36,6 +36,8 @@ export class ProjectsListComponent implements OnInit {
   }
   
   onOpenDialog() {
-    this.editModalRef = this.dialog.open(EditProjectComponent);
+    this.editModalRef = this.dialog.open(ProjectEditComponent, {
+      width: '400px'
+    });
   }
 }

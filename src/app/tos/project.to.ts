@@ -7,7 +7,7 @@ export class ProjectTo {
     id: number;
     projectName: string;
     startDate: Date;
-    addressTO: AddressTO;
+    address: AddressTO;
     clientTO: ClientTO;
     workerTOS: WorkerTO[];
     taskTOS: TaskTO[];

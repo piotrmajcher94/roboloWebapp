@@ -1,4 +1,4 @@
-import { ProjectService } from './../../services/project.service';
+import { ProjectService } from './../services/project.service';
 import { ProjectTo } from './../../tos/project.to';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';

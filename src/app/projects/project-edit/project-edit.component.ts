@@ -1,4 +1,4 @@
-import { ProjectRest } from './../../rest/project.rest';
+import { ProjectRest } from './../rest/project.rest';
 import { AuthService } from './../../auth/services/auth.service';
 import { FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -20,10 +20,10 @@ export class ProjectEditComponent implements OnInit {
       'projectName': new FormControl(null, Validators.required),
       'startDate': new FormControl(null, [Validators.required,
         Validators.pattern(/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/)]),
-      'addressTO': new FormGroup({
+      'address': new FormGroup({
         'street': new FormControl(null, Validators.required),
         'houseNumber': new FormControl(null, Validators.required),
-        'apartmentNumber': new FormControl(null, Validators.required),
+        'apartmentNumber': new FormControl(null),
         'city': new FormControl(null, Validators.required),
         'postCode': new FormControl(null, Validators.required),
         'country': new FormControl(null, Validators.required)

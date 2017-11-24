@@ -1,6 +1,8 @@
 import { Router } from '@angular/router';
 import { AuthService } from "../auth/services/auth.service";
 import { Component, OnInit } from '@angular/core';
+import { ProjectEditComponent } from './../projects/project-edit/project-edit.component';
+import {VERSION, MatDialog, MatDialogRef} from '@angular/material';
 
 
 @Component({
@@ -11,9 +13,14 @@ import { Component, OnInit } from '@angular/core';
 export class NavComponent {
 
   public isCollapsed = true;
-  constructor(private router: Router, private authService: AuthService) { }
+  editModalRef: MatDialogRef<ProjectEditComponent>;
+  constructor(private router: Router, private authService: AuthService, private dialog: MatDialog) { }
 
   isUserLoggedIn() {
     return !this.authService.isTokenExpired();
+  }
+
+  showEditProjectDialog() {
+    this.editModalRef = this.dialog.open(ProjectEditComponent);
   }
 }

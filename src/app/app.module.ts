@@ -1,8 +1,8 @@
 import { AuthService } from './auth/services/auth.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthRestService } from './auth/rest/auth.rest.service';
-import { ProjectService } from './services/project.service';
-import { ProjectRest } from './rest/project.rest';
+import { ProjectService } from './projects/services/project.service';
+import { ProjectRest } from './projects/rest/project.rest';
 import { AuthErrorHandler } from './auth/auto-error.handler';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -31,7 +31,6 @@ import { WorkersComponent } from './workers/workers.component';
 import { WorkersListItemComponent } from './workers/workers-list/workers-list-item/workers-list-item.component';
 import { WorkerEditComponent } from './workers/worker-edit/worker-edit.component';
 import { WorkersListComponent } from './workers/workers-list/workers-list.component';
-import { EditProjectComponent } from './projects/projects-list/edit-project.component';
 
 import {A11yModule} from '@angular/cdk/a11y';
 import {BidiModule} from '@angular/cdk/bidi';
@@ -82,7 +81,6 @@ const appRoutes: Routes = [
   {path: 'password-recovery', component: PasswordRecoveryComponent},
   {path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard], children: [
     {path: '', redirectTo: 'all', pathMatch: 'full'},
-    {path: 'edit', component: ProjectEditComponent},
     {path: ':id/details', component: ProjectDetailsComponent},
     {path: 'all', component: ProjectsListComponent}
   ]},
@@ -160,7 +158,6 @@ export class MaterialModule {}
     WorkersListComponent,
     WorkersListItemComponent,
     WorkerEditComponent,
-    EditProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -183,6 +180,6 @@ export class MaterialModule {}
     AuthGuard,
     AuthErrorHandler],
   bootstrap: [AppComponent],
-  entryComponents: [EditProjectComponent]
+  entryComponents: [ProjectEditComponent]
 })
 export class AppModule { }

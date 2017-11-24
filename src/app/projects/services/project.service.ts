@@ -1,9 +1,9 @@
-import { ProjectTo } from './../tos/project.to';
+import { ProjectTo } from './../../tos/project.to';
 import { ProjectRest } from '../rest/project.rest';
-import { AuthService } from '../auth/services/auth.service';
+import { AuthService } from '../../auth/services/auth.service';
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { ProjectStubTO } from '../tos/project.stub.to';
+import { ProjectStubTO } from '../../tos/project.stub.to';
 import { Observable } from 'rxjs/Observable';
 
 
@@ -17,7 +17,11 @@ export class ProjectService {
     getAllProjectStubs(): Observable<ProjectStubTO[]> {
         const headers = this.authService.getSessionAuthHeaders();
         return this.projectRest.getAllProjectStubs(this.authService.getSessionAuthHeaders())
-            .map((res: Response) => <ProjectStubTO[]> JSON.parse(res.text()));
+            .map((res: Response) => {
+                console.log("Res: " + res.text());
+               return <ProjectStubTO[]> JSON.parse(res.text())
+            }
+            );
     }
 
     getProjectDetails(projectId: number): Observable<ProjectTo> {
