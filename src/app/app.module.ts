@@ -31,6 +31,49 @@ import { WorkersComponent } from './workers/workers.component';
 import { WorkersListItemComponent } from './workers/workers-list/workers-list-item/workers-list-item.component';
 import { WorkerEditComponent } from './workers/worker-edit/worker-edit.component';
 import { WorkersListComponent } from './workers/workers-list/workers-list.component';
+import { EditProjectComponent } from './projects/projects-list/edit-project.component';
+
+import {A11yModule} from '@angular/cdk/a11y';
+import {BidiModule} from '@angular/cdk/bidi';
+import {ObserversModule} from '@angular/cdk/observers';
+import {OverlayModule} from '@angular/cdk/overlay';
+import {PlatformModule} from '@angular/cdk/platform';
+import {PortalModule} from '@angular/cdk/portal';
+import {ScrollDispatchModule} from '@angular/cdk/scrolling';
+import {CdkStepperModule} from '@angular/cdk/stepper';
+import {CdkTableModule} from '@angular/cdk/table';
+
+import {
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatStepperModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+} from '@angular/material';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent },
@@ -51,6 +94,54 @@ const appRoutes: Routes = [
   {path: '', component: HomeComponent}
 ];
 
+
+@NgModule({
+  exports: [
+    // CDK
+    A11yModule,
+    BidiModule,
+    ObserversModule,
+    OverlayModule,
+    PlatformModule,
+    PortalModule,
+    ScrollDispatchModule,
+    CdkStepperModule,
+    CdkTableModule,
+    
+    // Material
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSlideToggleModule,
+    MatSliderModule,
+    MatSnackBarModule,
+    MatStepperModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatNativeDateModule,
+  ]
+})
+export class MaterialModule {}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +159,8 @@ const appRoutes: Routes = [
     WorkersComponent,
     WorkersListComponent,
     WorkersListItemComponent,
-    WorkerEditComponent
+    WorkerEditComponent,
+    EditProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +172,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     CookieLawModule,
     NgcFloatButtonModule,
-    CookieLawModule
+    CookieLawModule,
+    MaterialModule
   ],
   providers: [
     AuthRestService, 
@@ -89,6 +182,7 @@ const appRoutes: Routes = [
     AuthService, 
     AuthGuard,
     AuthErrorHandler],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [EditProjectComponent]
 })
 export class AppModule { }

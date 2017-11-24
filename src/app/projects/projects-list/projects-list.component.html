@@ -1,6 +1,6 @@
 <div class="list-group" style="margin-top: 20px">
   <app-projects-list-item *ngFor="let project of projects" [project]="project"></app-projects-list-item>
 </div>
-<ngc-float-button id="fixedButton" icon="add">
+<ngc-float-button id="fixedButton" icon="add" (click)="onOpenDialog()">
 </ngc-float-button>
 
