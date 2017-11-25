@@ -62,4 +62,28 @@ export class ProjectService {
         });
     }
 
+    setTaskDone(projectId, taskId): Observable<TaskTO[][]> {
+        return this.projectRest.setTaskDone(projectId, taskId, this.authService.getSessionAuthHeaders())
+        .map((res: Response) =>  {
+            console.log(res.json());
+            return <TaskTO[][]> res.json();
+        });
+    }
+
+    setTaskToDo(projectId, taskId): Observable<TaskTO[][]> {
+        return this.projectRest.setTaskToDo(projectId, taskId, this.authService.getSessionAuthHeaders())
+        .map((res: Response) =>  {
+            console.log(res.json());
+            return <TaskTO[][]> res.json();
+        });
+    }
+
+    setTaskInProgress(projectId, taskId): Observable<TaskTO[][]> {
+        return this.projectRest.setTaskInProgress(projectId, taskId, this.authService.getSessionAuthHeaders())
+        .map((res: Response) =>  {
+            console.log(res.json());
+            return <TaskTO[][]> res.json();
+        });
+    }
+
 }

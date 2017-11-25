@@ -58,79 +58,22 @@
           <h4>To do</h4>
         </div>
         <ul class="list-group">
-          <li class="list-group-item">
+          <li class="list-group-item" *ngFor="let task of tasksToDo">
             <div>
               <div>
                 <a href="#">
-                  <h5>Task name
-                    <span class="label label-default">6 days</span>
+                  <h5>#{{ task.id }}
+                    <span class="label label-default">{{ task.estimatedTaskDurationHours }} hours</span>
                   </h5>
                 </a>
               </div>
               <p>
                 Olaf Krawczyk
-                <br> Description ... </p>
+                <br> {{ task.description }} </p>
               <div class="btn-group">
                 <button type="button" class="btn btn-warning btn-xs">Delete</button>
-                <button type="button" class="btn btn-primary btn-xs">In progress</button>
-                <button type="button" class="btn btn-default btn-xs">Done</button>
-              </div>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div>
-              <div>
-                <a href="#">
-                  <h5>Task name
-                    <span class="label label-default">4 days</span>
-                  </h5>
-                </a>
-              </div>
-              <p>
-                Sebastian Szachnowicz
-                <br> Description ... </p>
-              <div class="btn-group">
-                <button type="button" class="btn btn-warning btn-xs">Delete</button>
-                <button type="button" class="btn btn-primary btn-xs">In progress</button>
-                <button type="button" class="btn btn-default btn-xs">Done</button>
-              </div>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div>
-              <div>
-                <a href="#">
-                  <h5>Task name
-                    <span class="label label-default">3 days</span>
-                  </h5>
-                </a>
-              </div>
-              <p>
-                Piotr Majcher
-                <br> Description ... </p>
-              <div class="btn-group">
-                <button type="button" class="btn btn-warning btn-xs">Delete</button>
-                <button type="button" class="btn btn-primary btn-xs">In progress</button>
-                <button type="button" class="btn btn-default btn-xs">Done</button>
-              </div>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div>
-              <div>
-                <a href="#">
-                  <h5>Task name
-                    <span class="label label-default">69 days</span>
-                  </h5>
-                </a>
-              </div>
-              <p>
-                Jon Doe
-                <br> Description ... </p>
-              <div class="btn-group">
-                <button type="button" class="btn btn-warning btn-xs">Delete</button>
-                <button type="button" class="btn btn-primary btn-xs">In progress</button>
-                <button type="button" class="btn btn-default btn-xs">Done</button>
+                <button type="button" class="btn btn-primary btn-xs" (click)="setTaskInProgress(task.id)">In progress</button>
+                <button type="button" class="btn btn-default btn-xs" (click)="setTaskDone(task.id)">Done</button>
               </div>
             </div>
           </li>
@@ -144,41 +87,22 @@
           <h4>In progress</h4>
         </div>
         <ul class="list-group">
-          <li class="list-group-item">
+          <li class="list-group-item" *ngFor="let task of tasksInProgress">
             <div>
               <div>
                 <a href="#">
-                  <h5>Task name
-                    <span class="label label-default">6 days</span>
+                  <h5>#{{ task.id }}
+                    <span class="label label-default">{{ task.estimatedTaskDurationHours }} hours</span>
                   </h5>
                 </a>
               </div>
               <p>
                 Olaf Krawczyk
-                <br> Description ... </p>
+                <br> {{ task.description }} </p>
               <div class="btn-group">
                 <button type="button" class="btn btn-warning btn-xs">Delete</button>
-                <button type="button" class="btn btn-default btn-xs">To do</button>
-                <button type="button" class="btn btn-success btn-xs">Done</button>
-              </div>
-            </div>
-          </li>
-          <li class="list-group-item">
-            <div>
-              <div>
-                <a href="#">
-                  <h5>Task name
-                    <span class="label label-default">69 days</span>
-                  </h5>
-                </a>
-              </div>
-              <p>
-                Jon Doe
-                <br> Description ... </p>
-              <div class="btn-group">
-                <button type="button" class="btn btn-warning btn-xs">Delete</button>
-                <button type="button" class="btn btn-default btn-xs">To do</button>
-                <button type="button" class="btn btn-success btn-xs">Done</button>
+                <button type="button" class="btn btn-default btn-xs" (click)="setTaskToDo(task.id)">To do</button>
+                <button type="button" class="btn btn-success btn-xs" (click)="setTaskDone(task.id)">Done</button>
               </div>
             </div>
           </li>
@@ -192,22 +116,22 @@
           <h4>Done</h4>
         </div>
         <ul class="list-group">
-          <li class="list-group-item">
+          <li class="list-group-item" *ngFor="let task of tasksDone">
             <div>
               <div>
                 <a href="#">
-                  <h5>Task name
-                    <span class="label label-default">69 days</span>
+                  <h5>#{{ task.id }}
+                    <span class="label label-default">{{ task.estimatedTaskDurationHours }} hours</span>
                   </h5>
                 </a>
               </div>
               <p>
                 Jon Doe
-                <br> Description ... </p>
+                <br> {{ task.description }} </p>
               <div class="btn-group">
                 <button type="button" class="btn btn-warning btn-xs">Delete</button>
-                <button type="button" class="btn btn-default btn-xs">In progress</button>
-                <button type="button" class="btn btn-default btn-xs">To do</button>
+                <button type="button" class="btn btn-default btn-xs" (click)="setTaskInProgress(task.id)">In progress</button>
+                <button type="button" class="btn btn-default btn-xs" (click)="setTaskToDo(task.id)">To do</button>
               </div>
             </div>
           </li>

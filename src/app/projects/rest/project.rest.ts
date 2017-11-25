@@ -38,4 +38,16 @@ export class ProjectRest {
     getAllTasks(projectId, headers) {
         return this.http.get(this.restUrl + '/tasks/all/' + projectId, {headers: headers});
     }
+
+    setTaskDone(projectId, taskId, headers) {
+        return this.http.post(this.restUrl + '/tasks/set/done/' + projectId + '/' + taskId, null, {headers: headers});
+    }
+
+    setTaskToDo(projectId, taskId, headers) {
+        return this.http.post(this.restUrl + '/tasks/set/todo/' + projectId + '/' + taskId, null, {headers: headers});
+    }
+
+    setTaskInProgress(projectId, taskId, headers) {
+        return this.http.post(this.restUrl + '/tasks/set/inprogress/' + projectId + '/' + taskId, null, {headers: headers});
+    }
 }

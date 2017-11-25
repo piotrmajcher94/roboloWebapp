@@ -59,7 +59,7 @@ export class ProjectDetailsComponent implements OnInit {
     this.addTaskModalRef = this.dialog.open(TaskAddComponent, {hasBackdrop: true, data: {projectId: this.project.id}});
     this.addTaskModalRef.afterClosed()
       .subscribe(
-        // set lists 
+        e => this.getProjectTasks()
       );
   }
 
@@ -70,6 +70,36 @@ export class ProjectDetailsComponent implements OnInit {
         this.tasksToDo = data[0];
         this.tasksInProgress = data[1];
         this.tasksDone = data[2];
+      },
+      error => console.log(error)
+    );
+  }
+
+  setTaskDone(taskId) {
+    this.projectService.setTaskDone(this.project.id, taskId).subscribe(
+      data => {
+        console.log(data);
+        this.getProjectTasks();
+      },
+      error => console.log(error)
+    );
+  }
+
+  setTaskToDo(taskId) {
+    this.projectService.setTaskToDo(this.project.id, taskId).subscribe(
+      data => {
+        console.log(data);
+        this.getProjectTasks();
+      },
+      error => console.log(error)
+    );
+  }
+
+  setTaskInProgress(taskId) {
+    this.projectService.setTaskInProgress(this.project.id, taskId).subscribe(
+      data => {
+        console.log(data);
+        this.getProjectTasks();
       },
       error => console.log(error)
     );
