@@ -1,7 +1,12 @@
+import { ProjectEditDetailsComponent } from './../../project-edit-details/project-edit-details.component';
+import { ProjectEditComponent } from './../project-edit/project-edit.component';
 import { ProjectService } from './../services/project.service';
 import { ProjectTo } from './../../tos/project.to';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { MatDialogRef, MatDialog } from '@angular/material';
+import { filter } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-project-details',
@@ -11,8 +16,10 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class ProjectDetailsComponent implements OnInit {
 
   project: ProjectTo;
+  editModalRef: MatDialogRef<ProjectEditDetailsComponent>;
 
-  constructor(private activatedRoute: ActivatedRoute, private projectService: ProjectService) { }
+  constructor(private activatedRoute: ActivatedRoute, private projectService: ProjectService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(
@@ -26,6 +33,17 @@ export class ProjectDetailsComponent implements OnInit {
         );
       }
     );
+  }
+
+  onOpenEditDialog() {
+    this.editModalRef = this.dialog.open(ProjectEditDetailsComponent, {hasBackdrop: true,
+      data: {project: this.project}});
+    this.editModalRef.afterClosed()
+      .subscribe(project => {
+        if (project === null) {
+          this.project = project;
+        }
+      });
   }
 
 }

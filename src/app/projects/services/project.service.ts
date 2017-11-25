@@ -36,4 +36,12 @@ export class ProjectService {
             return <ProjectStubTO[]> JSON.parse(res.text());
         });
     }
+
+    updateProject(id, data): Observable<ProjectStubTO> {
+        return this.projectRest.updateProject(id, data, this.authService.getSessionAuthHeaders())
+        .map((res: Response) =>  {
+            console.log(res.json());
+            return <ProjectStubTO> res.json();
+        });
+    }
 }

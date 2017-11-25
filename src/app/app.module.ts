@@ -73,6 +73,7 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
+import { ProjectEditDetailsComponent } from './project-edit-details/project-edit-details.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent },
@@ -136,7 +137,8 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatTooltipModule,
     MatNativeDateModule,
-  ]
+  ],
+  declarations: []
 })
 export class MaterialModule {}
 
@@ -158,6 +160,7 @@ export class MaterialModule {}
     WorkersListComponent,
     WorkersListItemComponent,
     WorkerEditComponent,
+    ProjectEditDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -180,6 +183,6 @@ export class MaterialModule {}
     AuthGuard,
     AuthErrorHandler],
   bootstrap: [AppComponent],
-  entryComponents: [ProjectEditComponent]
+  entryComponents: [ProjectEditComponent, ProjectEditDetailsComponent]
 })
 export class AppModule { }
