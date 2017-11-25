@@ -31,6 +31,10 @@ export class ProjectRest {
         return this.http.post(this.restUrl + '/projects/update/' + id, data, {headers: headers});
     }
 
+    deleteProject(id, headers) {
+        return this.http.delete(this.restUrl + '/projects/delete/' + id, {headers: headers});
+    }
+
     createTask(projectId, data, headers) {
         return this.http.post(this.restUrl + '/tasks/add/' + projectId, data, {headers: headers});
     }
@@ -49,5 +53,9 @@ export class ProjectRest {
 
     setTaskInProgress(projectId, taskId, headers) {
         return this.http.post(this.restUrl + '/tasks/set/inprogress/' + projectId + '/' + taskId, null, {headers: headers});
+    }
+
+    deleteTask(projectId, taskId, headers) {
+        return this.http.delete(this.restUrl + '/tasks/delete/' + projectId + '/' + taskId, {headers: headers});
     }
 }

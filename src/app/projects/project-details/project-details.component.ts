@@ -5,7 +5,7 @@ import { ProjectEditComponent } from './../project-edit/project-edit.component';
 import { ProjectService } from './../services/project.service';
 import { ProjectTo } from './../../tos/project.to';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { filter } from 'rxjs/operators';
 
@@ -23,11 +23,13 @@ export class ProjectDetailsComponent implements OnInit {
   tasksInProgress: TaskTO[];
   tasksDone: TaskTO[];
 
+  progress = 0;
+
   editModalRef: MatDialogRef<ProjectEditDetailsComponent>;
   addTaskModalRef: MatDialogRef<TaskAddComponent>;
 
   constructor(private activatedRoute: ActivatedRoute, private projectService: ProjectService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(
@@ -70,6 +72,17 @@ export class ProjectDetailsComponent implements OnInit {
         this.tasksToDo = data[0];
         this.tasksInProgress = data[1];
         this.tasksDone = data[2];
+
+        this.progress = ((this.tasksDone.length) / (this.tasksInProgress.length + this.tasksToDo.length + this.tasksDone.length)) * 100;
+      },
+      error => console.log(error)
+    );
+  }
+
+  onDeleteProject() {
+    this.projectService.deleteProject(this.project.id).subscribe(
+      data => {
+        this.router.navigate(['/']);
       },
       error => console.log(error)
     );
@@ -97,6 +110,16 @@ export class ProjectDetailsComponent implements OnInit {
 
   setTaskInProgress(taskId) {
     this.projectService.setTaskInProgress(this.project.id, taskId).subscribe(
+      data => {
+        console.log(data);
+        this.getProjectTasks();
+      },
+      error => console.log(error)
+    );
+  }
+
+  deleteTask(taskId) {
+    this.projectService.deleteTask(this.project.id, taskId).subscribe(
       data => {
         console.log(data);
         this.getProjectTasks();

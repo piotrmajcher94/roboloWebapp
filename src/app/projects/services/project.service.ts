@@ -38,6 +38,14 @@ export class ProjectService {
         });
     }
 
+    deleteProject(projectId): Observable<ProjectStubTO[]> {
+        return this.projectRest.deleteProject(projectId, this.authService.getSessionAuthHeaders())
+        .map((res: Response) =>  {
+            console.log(res.text());
+            return <ProjectStubTO[]> JSON.parse(res.text());
+        });
+    }
+
     updateProject(id, data): Observable<ProjectStubTO> {
         return this.projectRest.updateProject(id, data, this.authService.getSessionAuthHeaders())
         .map((res: Response) =>  {
@@ -80,6 +88,14 @@ export class ProjectService {
 
     setTaskInProgress(projectId, taskId): Observable<TaskTO[][]> {
         return this.projectRest.setTaskInProgress(projectId, taskId, this.authService.getSessionAuthHeaders())
+        .map((res: Response) =>  {
+            console.log(res.json());
+            return <TaskTO[][]> res.json();
+        });
+    }
+
+    deleteTask(projectId, taskId): Observable<TaskTO[][]> {
+        return this.projectRest.deleteTask(projectId, taskId, this.authService.getSessionAuthHeaders())
         .map((res: Response) =>  {
             console.log(res.json());
             return <TaskTO[][]> res.json();
