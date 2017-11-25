@@ -89,7 +89,7 @@ const appRoutes: Routes = [
     {path: 'all', component: WorkersListComponent},
     {path: 'edit', component: WorkerEditComponent}
   ]},
-  {path: '', component: HomeComponent}
+  {path: '', redirectTo: 'projects', pathMatch: 'full'}
 ];
 
 
