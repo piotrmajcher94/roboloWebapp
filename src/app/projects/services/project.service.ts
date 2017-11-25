@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { ProjectStubTO } from '../../tos/project.stub.to';
 import { Observable } from 'rxjs/Observable';
+import { TaskTO } from '../../tos/task.to';
 
 
 @Injectable()
@@ -44,4 +45,21 @@ export class ProjectService {
             return <ProjectStubTO> res.json();
         });
     }
+
+    createTask(projectId, data): Observable<TaskTO[][]> {
+        return this.projectRest.createTask(projectId, data, this.authService.getSessionAuthHeaders())
+        .map((res: Response) =>  {
+            console.log(res.json());
+            return <TaskTO[][]> res.json();
+        });
+    }
+
+    getAllTasks(projectId): Observable<TaskTO[][]> {
+        return this.projectRest.getAllTasks(projectId, this.authService.getSessionAuthHeaders())
+        .map((res: Response) =>  {
+            console.log(res.json());
+            return <TaskTO[][]> res.json();
+        });
+    }
+
 }

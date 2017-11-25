@@ -5,7 +5,7 @@ import { Http, Headers } from '@angular/http';
 @Injectable()
 export class AuthRestService {
     
-    baseUrl = 'http://172.16.18.120:8080';
+    baseUrl = 'http://192.168.0.23:8080/';
 
     constructor(private http: Http) {}
 

@@ -1,3 +1,5 @@
+import { TaskAddComponent } from './../task-add/task-add.component';
+import { TaskTO } from './../../tos/task.to';
 import { ProjectEditDetailsComponent } from './../../project-edit-details/project-edit-details.component';
 import { ProjectEditComponent } from './../project-edit/project-edit.component';
 import { ProjectService } from './../services/project.service';
@@ -16,7 +18,13 @@ import { filter } from 'rxjs/operators';
 export class ProjectDetailsComponent implements OnInit {
 
   project: ProjectTo;
+
+  tasksToDo: TaskTO[];
+  tasksInProgress: TaskTO[];
+  tasksDone: TaskTO[];
+
   editModalRef: MatDialogRef<ProjectEditDetailsComponent>;
+  addTaskModalRef: MatDialogRef<TaskAddComponent>;
 
   constructor(private activatedRoute: ActivatedRoute, private projectService: ProjectService,
     private dialog: MatDialog) { }
@@ -28,6 +36,7 @@ export class ProjectDetailsComponent implements OnInit {
           (data: ProjectTo) => {
             console.log(data);
             this.project = data;
+            this.getProjectTasks();
           },
           (error) => console.log(error)
         );
@@ -40,10 +49,30 @@ export class ProjectDetailsComponent implements OnInit {
       data: {project: this.project}});
     this.editModalRef.afterClosed()
       .subscribe(project => {
-        if (project === null) {
+        if (project != null) {
           this.project = project;
         }
       });
+  }
+
+  onAddTaskDialog() {
+    this.addTaskModalRef = this.dialog.open(TaskAddComponent, {hasBackdrop: true, data: {projectId: this.project.id}});
+    this.addTaskModalRef.afterClosed()
+      .subscribe(
+        // set lists 
+      );
+  }
+
+  getProjectTasks() {
+    this.projectService.getAllTasks(this.project.id).subscribe(
+      (data) => {
+        console.log(data);
+        this.tasksToDo = data[0];
+        this.tasksInProgress = data[1];
+        this.tasksDone = data[2];
+      },
+      error => console.log(error)
+    );
   }
 
 }

@@ -73,7 +73,9 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
+
 import { ProjectEditDetailsComponent } from './project-edit-details/project-edit-details.component';
+import { TaskAddComponent } from './projects/task-add/task-add.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent },
@@ -160,7 +162,8 @@ export class MaterialModule {}
     WorkersListComponent,
     WorkersListItemComponent,
     WorkerEditComponent,
-    ProjectEditDetailsComponent
+    ProjectEditDetailsComponent,
+    TaskAddComponent
   ],
   imports: [
     BrowserModule,
@@ -183,6 +186,6 @@ export class MaterialModule {}
     AuthGuard,
     AuthErrorHandler],
   bootstrap: [AppComponent],
-  entryComponents: [ProjectEditComponent, ProjectEditDetailsComponent]
+  entryComponents: [ProjectEditComponent, ProjectEditDetailsComponent, TaskAddComponent]
 })
 export class AppModule { }

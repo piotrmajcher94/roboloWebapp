@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class ProjectRest {
 
-    private restUrl = 'http://172.16.18.120:8080';
+    private restUrl = 'http://192.168.0.23:8080';
     constructor(
         private http: Http) {
     }
@@ -29,5 +29,13 @@ export class ProjectRest {
 
     updateProject(id, data, headers) {
         return this.http.post(this.restUrl + '/projects/update/' + id, data, {headers: headers});
+    }
+
+    createTask(projectId, data, headers) {
+        return this.http.post(this.restUrl + '/tasks/add/' + projectId, data, {headers: headers});
+    }
+
+    getAllTasks(projectId, headers) {
+        return this.http.get(this.restUrl + '/tasks/all/' + projectId, {headers: headers});
     }
 }
