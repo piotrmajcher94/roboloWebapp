@@ -4,7 +4,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import {VERSION, MatDialog, MatDialogRef} from '@angular/material';
-import { ProjectEditComponent } from './../project-edit/project-edit.component'
+import { ProjectEditComponent } from './../project-edit/project-edit.component';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-projects-list',
@@ -36,8 +37,9 @@ export class ProjectsListComponent implements OnInit {
   }
   
   onOpenDialog() {
-    this.editModalRef = this.dialog.open(ProjectEditComponent, {
-      width: '400px'
-    });
+    this.editModalRef = this.dialog.open(ProjectEditComponent);
+    this.editModalRef.afterClosed()
+      .pipe(filter(projects => projects))
+      .subscribe(projects => this.projects = projects);
   }
 }

@@ -19,7 +19,7 @@ export class ProjectService {
         return this.projectRest.getAllProjectStubs(this.authService.getSessionAuthHeaders())
             .map((res: Response) => {
                 console.log("Res: " + res.text());
-               return <ProjectStubTO[]> JSON.parse(res.text())
+               return <ProjectStubTO[]> JSON.parse(res.text());
             }
             );
     }
@@ -27,5 +27,13 @@ export class ProjectService {
     getProjectDetails(projectId: number): Observable<ProjectTo> {
         return this.projectRest.getProjectDetails(projectId, this.authService.getSessionAuthHeaders())
         .map((res: Response) => <ProjectTo>res.json());
+    }
+
+    createProject(data): Observable<ProjectStubTO[]> {
+        return this.projectRest.createProject(data, this.authService.getSessionAuthHeaders())
+        .map((res: Response) =>  {
+            console.log(res.text());
+            return <ProjectStubTO[]> JSON.parse(res.text());
+        });
     }
 }
