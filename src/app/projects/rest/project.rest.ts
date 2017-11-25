@@ -7,23 +7,23 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class ProjectRest {
 
-    private restUrl = 'http://localhost:8080/';
+    private restUrl = 'http://172.16.18.120:8080';
     constructor(
         private http: Http) {
     }
 
     getAllProjectStubs(headers: Headers) {
         return this.http.get(
-            this.restUrl + 'projects/stubs/all',
+            this.restUrl + '/projects/stubs/all',
             {headers: headers}
         );
     }
 
     getProjectDetails(projectId: number, headers: Headers) {
-        return this.http.get(this.restUrl + 'projects/' + projectId, {headers: headers});
+        return this.http.get(this.restUrl + '/projects/' + projectId, {headers: headers});
     }
 
     createProject(data, headers) {
-        return this.http.post(this.restUrl + 'projects/add', data, {headers: headers});
+        return this.http.post(this.restUrl + '/projects/add', data, {headers: headers});
     }
 }
