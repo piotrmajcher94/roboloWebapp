@@ -1,0 +1,28 @@
+<div class="row" style="min-width: 600px">
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+      <form [formGroup]="addWorkerForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+        <!-- Form Name -->
+        <legend>Create new task</legend>
+  
+  
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="worker">Worker</label>
+          <div class="col-md-8">
+            <select name="worker" id="worker" class="form-control" formControlName="worker">
+              <option value="">-- Select One --</option>
+            </select>
+            <span class="help-block" *ngIf="!addWorkerForm.get('worker').valid && addWorkerForm.get('worker').touched">This field is required</span>
+          </div>
+        </div>
+  
+        <div class="col-md-8 col-md-offset-4">
+          <div class="alert alert-warning" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div>
+          <button type="submit" class="btn btn-success pull-right" [disabled]="!addWorkerForm.valid">Save</button>
+        </div>
+       
+      </form>
+    </div>
+  </div>

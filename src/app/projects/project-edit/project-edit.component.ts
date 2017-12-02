@@ -15,7 +15,8 @@ export class ProjectEditComponent implements OnInit {
   projectForm: FormGroup;
   errorMessage: string;
 
-  constructor(private projectsService: ProjectService,
+  constructor(
+    private projectsService: ProjectService,
     private dialogRef: MatDialogRef<ProjectEditComponent>) { }
 
   ngOnInit() {

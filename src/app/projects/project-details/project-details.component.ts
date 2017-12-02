@@ -1,3 +1,4 @@
+import { AddWorkerDialogComponent } from './../add-worker-dialog/add-worker-dialog.component';
 import { TaskAddComponent } from './../task-add/task-add.component';
 import { TaskTO } from './../../tos/task.to';
 import { ProjectEditDetailsComponent } from './../../project-edit-details/project-edit-details.component';
@@ -27,6 +28,7 @@ export class ProjectDetailsComponent implements OnInit {
 
   editModalRef: MatDialogRef<ProjectEditDetailsComponent>;
   addTaskModalRef: MatDialogRef<TaskAddComponent>;
+  setWorkerModalRef: MatDialogRef<AddWorkerDialogComponent>;
 
   constructor(private activatedRoute: ActivatedRoute, private projectService: ProjectService,
     private dialog: MatDialog, private router: Router) { }
@@ -80,6 +82,9 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   onDeleteProject() {
+    if (!confirm('Delete project?')) {
+      return;
+    }
     this.projectService.deleteProject(this.project.id).subscribe(
       data => {
         this.router.navigate(['/']);
@@ -119,6 +124,9 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   deleteTask(taskId) {
+    if (!confirm('Delete task?')) {
+      return;
+    }
     this.projectService.deleteTask(this.project.id, taskId).subscribe(
       data => {
         console.log(data);
@@ -126,6 +134,10 @@ export class ProjectDetailsComponent implements OnInit {
       },
       error => console.log(error)
     );
+  }
+
+  onSetWorker(taskId) {
+    this.setWorkerModalRef = this.dialog.open(AddWorkerDialogComponent);
   }
 
 }

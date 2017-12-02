@@ -1,5 +1,6 @@
 import { FormGroup, Validators, FormArray, FormControl} from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 
 
 @Component({
@@ -10,7 +11,8 @@ import { Component, OnInit } from '@angular/core';
 export class WorkerEditComponent implements OnInit {
 
   workerForm: FormGroup;
-  constructor() { }
+  errorMessage;
+  constructor(private dialogRef: MatDialogRef<WorkerEditComponent>) { }
 
   ngOnInit() {
     this.workerForm = new FormGroup({

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class ProjectRest {
 
-    private restUrl = 'http://192.168.0.23:8080';
+    private restUrl = 'http://localhost:8080';
     constructor(
         private http: Http) {
     }

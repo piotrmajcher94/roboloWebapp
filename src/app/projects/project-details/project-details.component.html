@@ -11,7 +11,7 @@
 
         <button type="button" class="btn btn-large btn-block btn-success" (click)="onAddTaskDialog()">
           <span class="glyphicon glyphicon-plus"></span> Add task</button>
-        <button type="button" class="btn btn-large btn-block btn-primary"  (click)="onOpenEditDialog()">
+        <button type="button" class="btn btn-large btn-block btn-primary" (click)="onOpenEditDialog()">
           <span class="glyphicon glyphicon-pencil"></span> Edit project</button>
         <button type="button" class="btn btn-large btn-block btn-danger" (click)="onDeleteProject()">
           <span class="glyphicon glyphicon-remove"></span> Delete project</button>
@@ -28,8 +28,8 @@
         </div>
         <div class="dashboard-widget-body">
           <p>Start date: {{ project.startDate }}
-            <br> Address: {{ project.address.street }} {{ project.address.houseNumber }}, {{ project.address.postCode }}
-            {{ project.address.city }}</p>
+            <br> Address: {{ project.address.street }} {{ project.address.houseNumber }}, {{ project.address.postCode }} {{ project.address.city
+            }}</p>
         </div>
       </div>
 
@@ -71,6 +71,7 @@
                 Olaf Krawczyk
                 <br> {{ task.description }} </p>
               <div class="btn-group">
+                <button type="button" class="btn btn-primary btn-xs" (click)="onSetWorker(task.id)">Set worker</button>
                 <button type="button" class="btn btn-warning btn-xs" (click)="deleteTask(task.id)">Delete</button>
                 <button type="button" class="btn btn-primary btn-xs" (click)="setTaskInProgress(task.id)">In progress</button>
                 <button type="button" class="btn btn-default btn-xs" (click)="setTaskDone(task.id)">Done</button>
@@ -100,6 +101,7 @@
                 Olaf Krawczyk
                 <br> {{ task.description }} </p>
               <div class="btn-group">
+                <button type="button" class="btn btn-primary btn-xs" (click)="onSetWorker(task.id)">Set worker</button>                
                 <button type="button" class="btn btn-warning btn-xs" (click)="deleteTask(task.id)">Delete</button>
                 <button type="button" class="btn btn-default btn-xs" (click)="setTaskToDo(task.id)">To do</button>
                 <button type="button" class="btn btn-success btn-xs" (click)="setTaskDone(task.id)">Done</button>
@@ -129,6 +131,7 @@
                 Jon Doe
                 <br> {{ task.description }} </p>
               <div class="btn-group">
+                <button type="button" class="btn btn-primary btn-xs" (click)="onSetWorker(task.id)">Set worker</button>                
                 <button type="button" class="btn btn-warning btn-xs" (click)="deleteTask(task.id)">Delete</button>
                 <button type="button" class="btn btn-default btn-xs" (click)="setTaskInProgress(task.id)">In progress</button>
                 <button type="button" class="btn btn-default btn-xs" (click)="setTaskToDo(task.id)">To do</button>

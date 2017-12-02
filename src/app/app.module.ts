@@ -76,6 +76,7 @@ import {
 
 import { ProjectEditDetailsComponent } from './project-edit-details/project-edit-details.component';
 import { TaskAddComponent } from './projects/task-add/task-add.component';
+import { AddWorkerDialogComponent } from './projects/add-worker-dialog/add-worker-dialog.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent },
@@ -163,7 +164,8 @@ export class MaterialModule {}
     WorkersListItemComponent,
     WorkerEditComponent,
     ProjectEditDetailsComponent,
-    TaskAddComponent
+    TaskAddComponent,
+    AddWorkerDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -186,6 +188,6 @@ export class MaterialModule {}
     AuthGuard,
     AuthErrorHandler],
   bootstrap: [AppComponent],
-  entryComponents: [ProjectEditComponent, ProjectEditDetailsComponent, TaskAddComponent]
+  entryComponents: [ProjectEditComponent, ProjectEditDetailsComponent, TaskAddComponent, WorkerEditComponent, AddWorkerDialogComponent]
 })
 export class AppModule { }

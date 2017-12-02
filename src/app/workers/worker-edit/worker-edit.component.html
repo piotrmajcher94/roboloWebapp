@@ -1,0 +1,34 @@
+<div class="row" style="min-width: 600px">
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+      <form [formGroup]="workerForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+        <!-- Form Name -->
+        <legend>Add new worker</legend>
+  
+  
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="name">Name</label>
+          <div class="col-md-8">
+            <input id="name" name="name" type="text" class="form-control" formControlName="name">
+            <span class="help-block" *ngIf="!workerForm.get('name').valid && workerForm.get('name').touched">This field is required</span>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="surname">Phone number</label>
+          <div class="col-md-8">
+            <input id="surname" name="surname" type="text" class="form-control" formControlName="surname">
+            <span class="help-block" *ngIf="!workerForm.get('surname').valid && workerForm.get('surname').touched">This field is required</span>
+          </div>
+        </div>
+  
+        <div class="col-md-8 col-md-offset-4">
+          <div class="alert alert-warning" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div>
+          <button type="submit" class="btn btn-success pull-right" [disabled]="!workerForm.valid">Save</button>
+        </div>
+       
+      </form>
+    </div>
+  </div>
