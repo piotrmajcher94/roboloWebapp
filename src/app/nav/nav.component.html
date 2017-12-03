@@ -29,10 +29,10 @@
         <div class="collapse navbar-collapse" [ngbCollapse] = "isCollapsed">
           <ul class="nav navbar-nav" *ngIf="isUserLoggedIn()">
             <li><a routerLink="/projects">My Projects</a></li>
-            <li><a (click)="showEditProjectDialog()">New project</a></li>
             <li><a routerLink="/workers">My Workers</a></li>
             <!-- <li><a routerLink="#">Settings</a></li> -->
             <!-- <li><a href="#">About</a></li> -->
+            <li><a style="cursor: pointer" (click)="showEditProjectDialog()">New client</a></li>
           </ul>
           <ul *ngIf="isUserLoggedIn()" class="nav navbar-nav navbar-right">
             <li><a routerLink="/login">Logout</a></li>
