@@ -10,6 +10,10 @@ export class AddWorkerDialogComponent implements OnInit {
 
   errorMessage;
   addWorkerForm: FormGroup;
+
+  allWorkersList: Worker[];
+  assignedWorkers: Worker[];
+
   constructor() { }
 
   ngOnInit() {
@@ -19,6 +23,16 @@ export class AddWorkerDialogComponent implements OnInit {
   }
 
   onSubmit() {
-
+    //send assigned workers via REST
   }
+
+  onAddWorker() {
+    //get selected worker
+    //put him in assignedWorkers table
+  }
+
+  removeWorker(worker) {
+    //remove worker from assignedList
+  }
+
 }
