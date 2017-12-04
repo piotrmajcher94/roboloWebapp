@@ -1,7 +1,7 @@
 import { CookieLawModule } from 'angular2-cookie-law';
 import { Component } from '@angular/core';
 
-export const baseURL = 'http://localhost:8080';
+export const baseURL = 'https://robolify.herokuapp.com/';
 
 @Component({
   selector: 'app-root',
