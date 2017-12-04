@@ -1,0 +1,34 @@
+<div class="row" style="min-width: 600px">
+  <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+      <!-- Form Name -->
+      <legend>Create new task</legend>
+
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="description">Description</label>
+        <div class="col-md-8">
+          <input id="description" name="description" type="text" class="form-control" formControlName="description">
+          <span class="help-block" *ngIf="!taskForm.get('description').valid && taskForm.get('description').touched">This field is required</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="estimatedTaskDurationHours">Estimated hours</label>
+        <div class="col-md-8">
+          <input id="estimatedTaskDurationHours" name="estimatedTaskDurationHours" type="text" class="form-control" formControlName="estimatedTaskDurationHours">
+          <span class="help-block" *ngIf="!taskForm.get('estimatedTaskDurationHours').valid && taskForm.get('estimatedTaskDurationHours').touched">This field is required</span>
+        </div>
+      </div>
+
+      <div class="col-md-8 col-md-offset-4">
+        <div class="alert alert-warning" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+        <button type="submit" class="btn btn-success pull-right" [disabled]="!taskForm.valid">Save</button>
+      </div>
+     
+    </form>
+  </div>
+</div>

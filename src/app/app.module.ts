@@ -1,8 +1,10 @@
+import { WorkersRest } from './workers/rest/workers.rest';
+import { ClientsService } from './clients/service/clients.service';
 import { AuthService } from './auth/services/auth.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthRestService } from './auth/rest/auth.rest.service';
-import { ProjectService } from './services/project.service';
-import { ProjectRest } from './rest/project.rest';
+import { ProjectService } from './projects/services/project.service';
+import { ProjectRest } from './projects/rest/project.rest';
 import { AuthErrorHandler } from './auth/auto-error.handler';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -32,6 +34,55 @@ import { WorkersListItemComponent } from './workers/workers-list/workers-list-it
 import { WorkerEditComponent } from './workers/worker-edit/worker-edit.component';
 import { WorkersListComponent } from './workers/workers-list/workers-list.component';
 
+import {A11yModule} from '@angular/cdk/a11y';
+import {BidiModule} from '@angular/cdk/bidi';
+import {ObserversModule} from '@angular/cdk/observers';
+import {OverlayModule} from '@angular/cdk/overlay';
+import {PlatformModule} from '@angular/cdk/platform';
+import {PortalModule} from '@angular/cdk/portal';
+import {ScrollDispatchModule} from '@angular/cdk/scrolling';
+import {CdkStepperModule} from '@angular/cdk/stepper';
+import {CdkTableModule} from '@angular/cdk/table';
+
+import {
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatStepperModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+} from '@angular/material';
+
+import { ProjectEditDetailsComponent } from './projects/project-edit-details/project-edit-details.component';
+import { TaskAddComponent } from './projects/task-add/task-add.component';
+import { AddWorkerDialogComponent } from './projects/add-worker-dialog/add-worker-dialog.component';
+import { ClientAddComponent } from './clients/client-add/client-add.component';
+import { ClientsRest } from './clients/rest/clients.rest';
+import { WorkersService } from './workers/services/worker.service';
+
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent },
   {path: 'register', component: RegistrationComponent},
@@ -39,7 +90,6 @@ const appRoutes: Routes = [
   {path: 'password-recovery', component: PasswordRecoveryComponent},
   {path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard], children: [
     {path: '', redirectTo: 'all', pathMatch: 'full'},
-    {path: 'edit', component: ProjectEditComponent},
     {path: ':id/details', component: ProjectDetailsComponent},
     {path: 'all', component: ProjectsListComponent}
   ]},
@@ -48,8 +98,57 @@ const appRoutes: Routes = [
     {path: 'all', component: WorkersListComponent},
     {path: 'edit', component: WorkerEditComponent}
   ]},
-  {path: '', component: HomeComponent}
+  {path: '', redirectTo: 'projects', pathMatch: 'full'}
 ];
+
+
+@NgModule({
+  exports: [
+    // CDK
+    A11yModule,
+    BidiModule,
+    ObserversModule,
+    OverlayModule,
+    PlatformModule,
+    PortalModule,
+    ScrollDispatchModule,
+    CdkStepperModule,
+    CdkTableModule,
+    
+    // Material
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSlideToggleModule,
+    MatSliderModule,
+    MatSnackBarModule,
+    MatStepperModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatNativeDateModule,
+  ],
+  declarations: []
+})
+export class MaterialModule {}
 
 @NgModule({
   declarations: [
@@ -68,7 +167,11 @@ const appRoutes: Routes = [
     WorkersComponent,
     WorkersListComponent,
     WorkersListItemComponent,
-    WorkerEditComponent
+    WorkerEditComponent,
+    ProjectEditDetailsComponent,
+    TaskAddComponent,
+    AddWorkerDialogComponent,
+    ClientAddComponent
   ],
   imports: [
     BrowserModule,
@@ -80,15 +183,26 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     CookieLawModule,
     NgcFloatButtonModule,
-    CookieLawModule
+    CookieLawModule,
+    MaterialModule
   ],
   providers: [
-    AuthRestService, 
-    ProjectService, 
-    ProjectRest, 
-    AuthService, 
+    ClientsService,
+    ClientsRest,
+    WorkersService,
+    WorkersRest,
+    AuthRestService,
+    ProjectService,
+    ProjectRest,
+    AuthService,
     AuthGuard,
     AuthErrorHandler],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ProjectEditComponent,
+    ProjectEditDetailsComponent,
+    TaskAddComponent,
+    WorkerEditComponent,
+    AddWorkerDialogComponent,
+    ClientAddComponent]
 })
 export class AppModule { }

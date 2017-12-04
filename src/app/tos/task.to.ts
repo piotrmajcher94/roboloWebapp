@@ -3,7 +3,7 @@ import { WorkerTO } from './worker.to';
 export class TaskTO {
     id: number;
     description: string;
-    estimatedTaskDuration: number;
+    estimatedTaskDurationHours: number;
     workers: WorkerTO[];
     creationDate: Date;
     startDate: Date;

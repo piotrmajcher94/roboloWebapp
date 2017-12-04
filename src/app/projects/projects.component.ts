@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectService } from '../services/project.service';
+import { ProjectService } from './services/project.service';
 import { ProjectStubTO } from '../tos/project.stub.to';
 
 @Component({
@@ -18,10 +18,6 @@ export class ProjectsComponent implements OnInit {
     this.projectService.getAllProjectStubs().subscribe(
       (res) => {
         let stubs: ProjectStubTO[] = res;
-        stubs.forEach(element => {
-          console.log("Project name: " + element.projectName);
-          console.log("Client name: " + element.clientTO.name);
-        });
       },
       (err) => {
         console.log("error");
