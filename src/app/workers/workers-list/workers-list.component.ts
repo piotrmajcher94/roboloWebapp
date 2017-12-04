@@ -1,3 +1,5 @@
+import { WorkerTO } from './../../tos/worker.to';
+import { WorkersService } from './../services/worker.service';
 import { WorkerEditComponent } from './../worker-edit/worker-edit.component';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -10,13 +12,22 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 })
 export class WorkersListComponent implements OnInit {
 
-  workers = [1, 2, 3, 4, 5];
+  workers: WorkerTO[];
   editModalRef: MatDialogRef<WorkerEditComponent>;
+
   constructor(
     private router: Router,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private workerService: WorkersService) { }
 
   ngOnInit() {
+    this.workerService.getAllWorkers().subscribe(
+      data => {
+        this.workers = data;
+        console.log(data);
+      },
+      error => console.log(error)
+    );
   }
 
   onOpenDialog() {

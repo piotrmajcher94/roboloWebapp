@@ -1,16 +1,9 @@
 <div class="row list-group-item" style="margin-bottom: 10px">
   <div class="col-md-8 col-lg-8">
         
-    <h4 class="list-group-item-heading" style="margin-top: 10px"> Jan Kowalski</h4>
-    <p class="list-group-item-text">
-      796 555 364 <br>
-      796 555 364 <br>
-      796 555 364 <br>
-      796 555 364 <br>
-      796 555 364 <br>
-      796 555 364 <br>
-      796 555 364 <br>
-      796 555 364 <br>
+    <h4 class="list-group-item-heading" style="margin-top: 10px">{{ worker.name }} {{ worker.surname }}</h4>
+    <p class="list-group-item-text" *ngFor="let telephone of worker.telephoneNumbers">
+      {{ telephone }}
     </p>
   </div>
   <div class="col-md-4 col-lg-4">

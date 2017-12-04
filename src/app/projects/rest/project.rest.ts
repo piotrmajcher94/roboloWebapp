@@ -59,4 +59,8 @@ export class ProjectRest {
     deleteTask(projectId, taskId, headers) {
         return this.http.delete(this.restUrl + '/tasks/delete/' + projectId + '/' + taskId, {headers: headers});
     }
+
+    setClient(projectId, clientId, headers) {
+        return this.http.post(this.restUrl + '/projects/update-client/' + projectId + '/' + clientId, null, {headers: headers});
+    }
 }

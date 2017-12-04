@@ -42,8 +42,8 @@
           <div class="form-group">
             <label for="setClient" class="col-sm-2 control-label">Set client</label>
             <div class="col-sm-6">
-              <select name="setClient" id="setClient" class="form-control" required="required">
-                <option value="setClient">setClient</option>
+              <select name="setClient" id="setClient" class="form-control" required="required" [(ngModel)]="selectedClient">
+                <option *ngFor="let client of clients" [value]="client.id"> {{ client.name }} {{ client.surname }}</option>
               </select>
             </div>
             <div class="col-sm-2">

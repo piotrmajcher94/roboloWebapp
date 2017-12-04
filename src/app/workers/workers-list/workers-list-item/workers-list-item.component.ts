@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { WorkerTO } from '../../../tos/worker.to';
 
 @Component({
   selector: 'app-workers-list-item',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkersListItemComponent implements OnInit {
 
+  @Input()
+  worker: WorkerTO;
   constructor() { }
 
   ngOnInit() {

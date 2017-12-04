@@ -102,4 +102,10 @@ export class ProjectService {
         });
     }
 
+    setClient(projectId, clientId): Observable<ProjectTo> {
+        return this.projectRest.setClient(projectId, clientId, this.authService.getSessionAuthHeaders()).map(
+            (res: Response) => <ProjectTo> res.json()
+        );
+    }
+
 }

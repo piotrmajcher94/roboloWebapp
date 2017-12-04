@@ -13,15 +13,15 @@ export class WorkersRest {
         private http: Http) {
     }
 
-    getWorkersList(ownerId) {
+    getWorkersList(headers) {
+        return this.http.get(this.restUrl + '/workers/all', {headers: headers});
+    }
+
+    updateWorkersList(taskId, headers) {
 
     }
 
-    updateWorkersList(taskId) {
-
-    }
-
-    addWorker(workerData, ownerId) {
-
+    addWorker(workerData, headers) {
+        return this.http.post(this.restUrl + '/workers/add', workerData, {headers: headers});
     }
 }

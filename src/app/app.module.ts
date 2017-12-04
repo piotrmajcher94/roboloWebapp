@@ -1,3 +1,5 @@
+import { WorkersRest } from './workers/rest/workers.rest';
+import { ClientsService } from './clients/service/clients.service';
 import { AuthService } from './auth/services/auth.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthRestService } from './auth/rest/auth.rest.service';
@@ -78,6 +80,8 @@ import { ProjectEditDetailsComponent } from './projects/project-edit-details/pro
 import { TaskAddComponent } from './projects/task-add/task-add.component';
 import { AddWorkerDialogComponent } from './projects/add-worker-dialog/add-worker-dialog.component';
 import { ClientAddComponent } from './clients/client-add/client-add.component';
+import { ClientsRest } from './clients/rest/clients.rest';
+import { WorkersService } from './workers/services/worker.service';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent },
@@ -183,6 +187,10 @@ export class MaterialModule {}
     MaterialModule
   ],
   providers: [
+    ClientsService,
+    ClientsRest,
+    WorkersService,
+    WorkersRest,
     AuthRestService,
     ProjectService,
     ProjectRest,

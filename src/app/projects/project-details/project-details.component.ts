@@ -1,3 +1,4 @@
+import { ClientsService } from './../../clients/service/clients.service';
 import { AddWorkerDialogComponent } from './../add-worker-dialog/add-worker-dialog.component';
 import { TaskAddComponent } from './../task-add/task-add.component';
 import { TaskTO } from './../../tos/task.to';
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { filter } from 'rxjs/operators';
+import { ClientTO } from '../../tos/client.to';
 
 
 @Component({
@@ -22,15 +24,17 @@ export class ProjectDetailsComponent implements OnInit {
   tasksToDo: TaskTO[];
   tasksInProgress: TaskTO[];
   tasksDone: TaskTO[];
+  clients: ClientTO[];
 
   progress = 0;
+  selectedClient;
 
   editModalRef: MatDialogRef<ProjectEditDetailsComponent>;
   addTaskModalRef: MatDialogRef<TaskAddComponent>;
   setWorkerModalRef: MatDialogRef<AddWorkerDialogComponent>;
 
   constructor(private activatedRoute: ActivatedRoute, private projectService: ProjectService,
-    private dialog: MatDialog, private router: Router) { }
+    private dialog: MatDialog, private router: Router, private clientsService: ClientsService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(
@@ -44,6 +48,10 @@ export class ProjectDetailsComponent implements OnInit {
           (error) => console.log(error)
         );
       }
+    );
+    this.clientsService.getAllClients().subscribe(
+      (data) => {this.clients = data; },
+      (error) => console.log(error)
     );
   }
 
@@ -143,6 +151,10 @@ export class ProjectDetailsComponent implements OnInit {
     if (!confirm('Change client?')) {
       return;
     }
+    this.projectService.setClient(this.project.id, this.selectedClient).subscribe(
+      data => this.project = data,
+      error => console.log(error)
+    );
   }
 
 }
