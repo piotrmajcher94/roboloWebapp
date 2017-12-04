@@ -28,8 +28,13 @@ export class WorkerEditComponent implements OnInit {
     let temp = this.workerForm.value.telephoneNumbers;
     this.workerForm.value.telephoneNumbers = [temp];
     this.workerService.addWorker(this.workerForm.value).subscribe(
-      data => console.log(data),
-      error => console.log(error)
+      data => {
+        console.log(data);
+        this.dialogRef.close();
+      },
+      error => {
+        this.errorMessage = error.text();
+      }
     );
   }
 }

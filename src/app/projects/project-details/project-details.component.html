@@ -84,11 +84,13 @@
                   </h5>
                 </a>
               </div>
+              <div *ngFor="let worker of task.workers">
+                {{ worker.name }} {{ worker.surname }}
+              </div>
               <p>
-                Olaf Krawczyk
                 <br> {{ task.description }} </p>
               <div class="btn-group">
-                <button type="button" class="btn btn-primary btn-xs" (click)="onSetWorker(task.id)">Set worker</button>
+                <button type="button" class="btn btn-primary btn-xs" (click)="onSetWorker(task)">Set worker</button>
                 <button type="button" class="btn btn-warning btn-xs" (click)="deleteTask(task.id)">Delete</button>
                 <button type="button" class="btn btn-primary btn-xs" (click)="setTaskInProgress(task.id)">In progress</button>
                 <button type="button" class="btn btn-default btn-xs" (click)="setTaskDone(task.id)">Done</button>
@@ -114,11 +116,13 @@
                   </h5>
                 </a>
               </div>
+              <div *ngFor="let worker of task.workers">
+                {{ worker.name }} {{ worker.surname }}
+              </div>
               <p>
-                Olaf Krawczyk
                 <br> {{ task.description }} </p>
               <div class="btn-group">
-                <button type="button" class="btn btn-primary btn-xs" (click)="onSetWorker(task.id)">Set worker</button>
+                <button type="button" class="btn btn-primary btn-xs" (click)="onSetWorker(task)">Set worker</button>
                 <button type="button" class="btn btn-warning btn-xs" (click)="deleteTask(task.id)">Delete</button>
                 <button type="button" class="btn btn-default btn-xs" (click)="setTaskToDo(task.id)">To do</button>
                 <button type="button" class="btn btn-success btn-xs" (click)="setTaskDone(task.id)">Done</button>
@@ -144,11 +148,13 @@
                   </h5>
                 </a>
               </div>
+              <div *ngFor="let worker of task.workers">
+                {{ worker.name }} {{ worker.surname }}
+              </div>
               <p>
-                Jon Doe
                 <br> {{ task.description }} </p>
               <div class="btn-group">
-                <button type="button" class="btn btn-primary btn-xs" (click)="onSetWorker(task.id)">Set worker</button>
+                <button type="button" class="btn btn-primary btn-xs" (click)="onSetWorker(task)">Set worker</button>
                 <button type="button" class="btn btn-warning btn-xs" (click)="deleteTask(task.id)">Delete</button>
                 <button type="button" class="btn btn-default btn-xs" (click)="setTaskInProgress(task.id)">In progress</button>
                 <button type="button" class="btn btn-default btn-xs" (click)="setTaskToDo(task.id)">To do</button>

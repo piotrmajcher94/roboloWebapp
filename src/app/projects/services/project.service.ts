@@ -108,4 +108,11 @@ export class ProjectService {
         );
     }
 
+    setTaskWorkers(workersListIds, projectId, taskId): Observable<TaskTO[][]> {
+        return this.projectRest.setTaskWorkers(workersListIds, projectId, taskId, this.authService.getSessionAuthHeaders())
+        .map(
+            res => <TaskTO[][]> res.json()
+        );
+    }
+
 }

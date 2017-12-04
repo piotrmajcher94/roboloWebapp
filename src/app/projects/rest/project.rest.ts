@@ -63,4 +63,8 @@ export class ProjectRest {
     setClient(projectId, clientId, headers) {
         return this.http.post(this.restUrl + '/projects/update-client/' + projectId + '/' + clientId, null, {headers: headers});
     }
+
+    setTaskWorkers(taskWorkersIds, projectId, taskId, headers) {
+        return this.http.post(this.restUrl + '/tasks/' + projectId + '/' + taskId + '/add-workers', taskWorkersIds, {headers: headers});
+    }
 }

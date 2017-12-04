@@ -143,8 +143,11 @@ export class ProjectDetailsComponent implements OnInit {
     );
   }
 
-  onSetWorker(taskId) {
-    this.setWorkerModalRef = this.dialog.open(AddWorkerDialogComponent);
+  onSetWorker(task) {
+    this.setWorkerModalRef = this.dialog.open(AddWorkerDialogComponent, {data: {project: this.project, task: task}});
+    this.setWorkerModalRef.afterClosed().subscribe(
+      e => this.getProjectTasks()
+    );
   }
 
   onSetClient() {

@@ -1,6 +1,6 @@
 <div class="row" style="min-width: 600px">
   <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-    <form [formGroup]="addWorkerForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+    <form [formGroup]="addWorkerForm" class="form-horizontal">
       <!-- Form Name -->
       <legend>Assign worker</legend>
 
@@ -11,39 +11,21 @@
         <div class="row">
           <div class="col-md-8">
             <select name="worker" id="worker" class="form-control" formControlName="worker">
-              <option value>Mariusz Błaszczak</option>
+              <option *ngFor="let worker of allWorkersList" [ngValue]="worker">{{ worker.name }} {{ worker.surname }}</option>
             </select>
           </div>
           <div class="col-md-2">
-            <button type="button" class="btn btn-info">Add</button>
+            <button type="button" class="btn btn-info" (click)="onAddWorker()">Add</button>
           </div>
         </div>
       </div>
 
       <div class="col-md-10">
         <h4>Assigned workers</h4>
-        <div class="row">
-          <div class="col-md-8">Antoni Macierewicz</div>
+        <div class="row" *ngFor="let aWorker of assignedWorkers" >
+          <div class="col-md-8">{{ aWorker.name }} {{ aWorker.surname }}</div>
           <div class="col-md-2">
-            <button type="button" class="btn btn-danger">X</button>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-8">Jarosław Kaczyński</div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-danger">X</button>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-8">Andrzej Duda</div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-danger">X</button>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-8">Ryszard Petru</div>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-danger">X</button>
+            <button type="button" class="btn btn-danger" (click)="removeWorker(aWorker)">X</button>
           </div>
         </div>
       </div>
@@ -52,7 +34,7 @@
         <div class="alert alert-warning" *ngIf="errorMessage">
           {{ errorMessage }}
         </div>
-        <button type="submit" class="btn btn-success pull-right">Save</button>
+        <button type="button" class="btn btn-success pull-right" (click)="onSubmit()">Save</button>
       </div>
     </form>
   </div>
