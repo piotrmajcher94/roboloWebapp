@@ -1,7 +1,7 @@
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { ProjectTo } from './../tos/project.to';
+import { ProjectTo } from './../../tos/project.to';
 import { Component, OnInit, Inject } from '@angular/core';
-import { ProjectService } from '../projects/services/project.service';
+import { ProjectService } from '../../projects/services/project.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({

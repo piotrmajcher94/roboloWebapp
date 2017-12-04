@@ -74,10 +74,10 @@ import {
   MatTooltipModule,
 } from '@angular/material';
 
-import { ProjectEditDetailsComponent } from './project-edit-details/project-edit-details.component';
+import { ProjectEditDetailsComponent } from './projects/project-edit-details/project-edit-details.component';
 import { TaskAddComponent } from './projects/task-add/task-add.component';
 import { AddWorkerDialogComponent } from './projects/add-worker-dialog/add-worker-dialog.component';
-import { ClientAddComponent } from './client-add/client-add.component';
+import { ClientAddComponent } from './clients/client-add/client-add.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent },
@@ -183,10 +183,10 @@ export class MaterialModule {}
     MaterialModule
   ],
   providers: [
-    AuthRestService, 
-    ProjectService, 
-    ProjectRest, 
-    AuthService, 
+    AuthRestService,
+    ProjectService,
+    ProjectRest,
+    AuthService,
     AuthGuard,
     AuthErrorHandler],
   bootstrap: [AppComponent],

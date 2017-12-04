@@ -1,8 +1,7 @@
 import { AddWorkerDialogComponent } from './../add-worker-dialog/add-worker-dialog.component';
 import { TaskAddComponent } from './../task-add/task-add.component';
 import { TaskTO } from './../../tos/task.to';
-import { ProjectEditDetailsComponent } from './../../project-edit-details/project-edit-details.component';
-import { ProjectEditComponent } from './../project-edit/project-edit.component';
+import { ProjectEditDetailsComponent } from './../project-edit-details/project-edit-details.component';
 import { ProjectService } from './../services/project.service';
 import { ProjectTo } from './../../tos/project.to';
 import { Component, OnInit } from '@angular/core';
@@ -138,6 +137,12 @@ export class ProjectDetailsComponent implements OnInit {
 
   onSetWorker(taskId) {
     this.setWorkerModalRef = this.dialog.open(AddWorkerDialogComponent);
+  }
+
+  onSetClient() {
+    if (!confirm('Change client?')) {
+      return;
+    }
   }
 
 }

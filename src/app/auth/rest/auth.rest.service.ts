@@ -1,3 +1,4 @@
+import { baseURL } from './../../app.component';
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
@@ -5,7 +6,7 @@ import { Http, Headers } from '@angular/http';
 @Injectable()
 export class AuthRestService {
     
-    baseUrl = 'http://localhost:8080/';
+    baseUrl = baseURL;
 
     constructor(private http: Http) {}
 

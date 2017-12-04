@@ -1,9 +1,8 @@
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { ProjectEditComponent } from './../projects/project-edit/project-edit.component';
 import {VERSION, MatDialog, MatDialogRef} from '@angular/material';
-import { ClientAddComponent } from '../client-add/client-add.component';
+import { ClientAddComponent } from '../clients/client-add/client-add.component';
 
 
 @Component({
